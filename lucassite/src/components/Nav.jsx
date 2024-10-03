@@ -15,10 +15,6 @@ function Intro(props) {
     const PAGES = ["Home", "Work", "Projects"]
     const NAV_POSITIONS = [[0,0], [0,100], [0,200]]
 
-    const balls = (idx) => {
-        props.onSelect(idx);
-    }
-
     useEffect(() => {
         const end_scroll_loc = (document.body.scrollHeight) * .1;
         const handleScroll = () => {
@@ -49,7 +45,7 @@ function Intro(props) {
                     key={idx}
                     style={{top: translations[idx][0] + 'px', left: translations[idx][1] + 'px'}}
                     className={idx === props.selected ? 'selected' : ''}
-                    onClick={() => (balls(idx))}
+                    onClick={() => props.onSelect(idx)}
                 >
                     {page}
                 </li>
