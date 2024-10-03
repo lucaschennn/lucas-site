@@ -53,17 +53,17 @@ function Background(props) {
 
       <ParallaxBanner
         layers={[
-          { image: 'bg1/bg.jpg', translateY: [0, 60], style: {filter: `blur(${blur}px)`}},
+          { image: 'bg1/bg.jpg', translateY: [0, 60], style: {webkitFilter: `blur(${blur}px)`}},
           {
             translateY: [0, 0],
             children: (
               <Intro/>
             ),
           },
-          { image: 'bg1/middle.png', translateY: [0, 40], style: {filter: `blur(${blur}px)`}},
-          { image: 'bg1/front.png', translateY: [0, 30], style: {filter: `blur(${blur}px)`}},
+          { image: 'bg1/middle.png', translateY: [0, 40], style: {webkitFilter: `blur(${blur}px)`}},
+          { image: 'bg1/front.png', translateY: [0, 30], style: {webkitFilter: `blur(${blur}px)`}},
         ]}
-        className="bg-parallax"
+        className={`bg-parallax ${props.selected > 0 ? " darken" : ""}`}
       />
     </div>
   )

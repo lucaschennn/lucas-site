@@ -4,6 +4,7 @@ import { ParallaxProvider } from 'react-scroll-parallax'
 import { useParallax } from 'react-scroll-parallax'
 import Background from './components/Background.jsx'
 import Nav from './components/Nav.jsx'
+import Experience from './components/Experience.jsx'
 import { ParallaxBanner } from 'react-scroll-parallax';
 
 import './App.css'
@@ -25,9 +26,10 @@ function App() {
 
   return (
     <>
-      <Nav selected={page} onSelect={setPage}/>
-      <Background/>
+      <Nav selected={page} setPage={setPage}/>
+      <Background selected={page}/>
       <div>
+        <Experience/>
       </div>
     </>
   )

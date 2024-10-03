@@ -16,15 +16,23 @@ function Intro(props) {
     const NAV_POSITIONS = [[0,0], [0,100], [0,200]]
 
     useEffect(() => {
-        const end_scroll_loc = (document.body.scrollHeight) * .1;
+        const end_scroll_loc = (document.body.scrollHeight) * .3;
+        const pg2 = (document.body.scrollHeight) * .65;
         const handleScroll = () => {
             if(window.scrollY > end_scroll_loc) {
                 setTranslations([[0, 0], [100, 0], [200, 0]])
                 setVertical(true);
+                if(window.scrollY > pg2) {
+                    props.setPage(2);
+                } else {
+                    props.setPage(1);
+                }
             } else if (end_scroll_loc >= window.scrollY) {
                 setTranslations(NAV_POSITIONS)
                 setVertical(false);
+                props.setPage(0);
             }
+            //0 -> sh *.3 -> sh*.65
         }
 
         window.addEventListener('scroll', handleScroll);
