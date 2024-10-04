@@ -24,14 +24,15 @@ function Background(props) {
 
     const start_scroll_loc = (document.body.scrollHeight) * .3;
     const end_scroll_loc = (document.body.scrollHeight) * .7;
-    const max_blur = 100;
-    const m = 100 / (end_scroll_loc - start_scroll_loc);
+    const max_blur = 70;
+    const m = max_blur / (end_scroll_loc - start_scroll_loc);
     const handleScroll = () => {
       if(window.scrollY < start_scroll_loc) {
         setBlur(0);
       } else {
         const pos_after_start = window.scrollY-start_scroll_loc
         setBlur(Math.min(max_blur, m * pos_after_start))
+        // setBlur(max_blur);
       }
     }
 
@@ -53,18 +54,21 @@ function Background(props) {
 
       <ParallaxBanner
         layers={[
-          { image: 'bg1/bg.jpg', translateY: [0, 60], style: {webkitFilter: `blur(${blur}px)`}},
+          { image: 'bg1/bg.jpg', translateY: [0, 60],},
           {
             translateY: [0, 0],
             children: (
               <Intro/>
             ),
           },
-          { image: 'bg1/middle.png', translateY: [0, 40], style: {webkitFilter: `blur(${blur}px)`}},
-          { image: 'bg1/front.png', translateY: [0, 30], style: {webkitFilter: `blur(${blur}px)`}},
+          { image: 'bg1/middle.png', translateY: [0, 40],},
+          { image: 'bg1/front.png', translateY: [0, 30],},
         ]}
         className={`bg-parallax ${props.selected > 0 ? " darken" : ""}`}
       />
+      <div className={`bg-filter ${props.selected > 0 ? " blur" : ""}`}>
+
+      </div>
     </div>
   )
 }
