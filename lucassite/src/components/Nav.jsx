@@ -6,7 +6,7 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 
 import '../App.css'
 
-function Intro(props) {
+function Intro({selected, setPage}) {
     /*
     selected: 0, 1, 2 (which page is selected)
     onSelect(update selected parent state)
@@ -16,21 +16,21 @@ function Intro(props) {
     const NAV_POSITIONS = [[0,0], [0,100], [0,200]]
 
     useEffect(() => {
-        const end_scroll_loc = (document.body.scrollHeight) * .3;
-        const pg2 = (document.body.scrollHeight) * .65;
+        const end_scroll_loc = (document.body.scrollHeight) * .5;
+        const pg2 = (document.body.scrollHeight) * 1.6;
         const handleScroll = () => {
             if(window.scrollY > end_scroll_loc) {
                 setTranslations([[0, 0], [100, 0], [200, 0]])
                 setVertical(true);
                 if(window.scrollY > pg2) {
-                    props.setPage(2);
+                    setPage(2);
                 } else {
-                    props.setPage(1);
+                    setPage(1);
                 }
             } else if (end_scroll_loc >= window.scrollY) {
                 setTranslations(NAV_POSITIONS)
                 setVertical(false);
-                props.setPage(0);
+                setPage(0);
             }
             //0 -> sh *.3 -> sh*.65
         }
@@ -52,8 +52,8 @@ function Intro(props) {
                 <li
                     key={idx}
                     style={{top: translations[idx][0] + 'px', left: translations[idx][1] + 'px'}}
-                    className={idx === props.selected ? 'selected' : ''}
-                    onClick={() => props.onSelect(idx)}
+                    className={idx === selected ? 'selected' : ''}
+                    onClick={() => setPage(idx)}
                 >
                     {page}
                 </li>
