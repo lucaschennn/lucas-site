@@ -19,20 +19,17 @@ function Background({page}) {
     "bg1": 3,
   }
   */
+  const LIM =  Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+    document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    const start_scroll_loc = (document.body.scrollHeight) * .3;
+    const start_scroll_loc = (document.body.scrollHeight) * .4;
     const end_scroll_loc = (document.body.scrollHeight) * .7;
-    const max_blur = 70;
-    const m = max_blur / (end_scroll_loc - start_scroll_loc);
+    console.log(start_scroll_loc, end_scroll_loc, LIM)
     const handleScroll = () => {
       if(window.scrollY < start_scroll_loc) {
-        setBlur(0);
         setOpacity(0);
       } else {
-        const pos_after_start = window.scrollY-start_scroll_loc
-        setBlur(Math.min(max_blur, m * pos_after_start))
         window.scrollY > end_scroll_loc ? setOpacity(1) : setOpacity(.5);
       }
     }
@@ -51,8 +48,13 @@ function Background({page}) {
   backgroundImage: urls.map(img => `url(${img})`).join(", "),
  }
 
- const [blur, setBlur] = useState(0);
  const [opacity, setOpacity] = useState(0);
+ const [loaded ,setLoaded] = useState(false);
+
+ const handleImageLoad = () => {
+  console.log("what")
+  setLoaded(true);
+ }
 
   return (
     <div id="background">
@@ -69,7 +71,8 @@ function Background({page}) {
           { image: 'bg1/middle.png', translateY: [0, 40],},
           { image: 'bg1/front.png', translateY: [0, 30],},
         ]}
-        className="bg-parallax"
+        className={`bg-parallax ${!loaded ? "loading": ""}`}
+        onLoad={handleImageLoad}
       />
       <div className={`bg-filter ${page > 0 ? "blur": ""}`}></div>
       <div className={`bg-color ${opacity === 1 ? "full-solid": ""}`}></div>

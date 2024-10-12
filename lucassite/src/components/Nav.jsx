@@ -12,12 +12,24 @@ function Intro({selected, setPage}) {
     onSelect(update selected parent state)
     */
 
+    const LIM =  Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
+    const page0 = 0;
+    const page1 = LIM * .3;
+    const page2 = LIM * .7;
+    const SCROLL_LOCS = [page0, page1, page2];
+
+   const scrollAndSetPage = (pg) => {
+    window.scrollTo({top: SCROLL_LOCS[pg], behavior: 'smooth'})
+    setPage(pg);
+   }
+
     const PAGES = ["Home", "Work", "Projects"]
     const NAV_POSITIONS = [[0,0], [0,100], [0,200]]
 
     useEffect(() => {
-        const end_scroll_loc = (document.body.scrollHeight) * .5;
-        const pg2 = (document.body.scrollHeight) * 1.6;
+        const end_scroll_loc = LIM * .15;
+        const pg2 = LIM * .6
         const handleScroll = () => {
             if(window.scrollY > end_scroll_loc) {
                 setTranslations([[0, 0], [100, 0], [200, 0]])
@@ -53,7 +65,7 @@ function Intro({selected, setPage}) {
                     key={idx}
                     style={{top: translations[idx][0] + 'px', left: translations[idx][1] + 'px'}}
                     className={idx === selected ? 'selected' : ''}
-                    onClick={() => setPage(idx)}
+                    onClick={() => scrollAndSetPage(idx)}
                 >
                     {page}
                 </li>
