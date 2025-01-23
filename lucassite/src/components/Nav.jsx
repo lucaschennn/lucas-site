@@ -12,11 +12,13 @@ function Intro({selected, setPage}) {
     onSelect(update selected parent state)
     */
 
-    const LIM =  Math.max( document.body.scrollHeight, document.body.offsetHeight, 
-        document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
+    // const LIM =  Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+    //     document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
     const page0 = 0;
-    const page1 = LIM * .3;
-    const page2 = LIM * .7;
+    // const page1 = LIM * .3;
+    // const page2 = LIM * .7;
+    const page1 = document.body.scrollHeight;
+    const page2 = document.body.scrollHeight * 2;
     const SCROLL_LOCS = [page0, page1, page2];
 
    const scrollAndSetPage = (pg) => {
@@ -28,20 +30,21 @@ function Intro({selected, setPage}) {
     const NAV_POSITIONS = [[0,0], [0,100], [0,200]]
 
     useEffect(() => {
-        const end_scroll_loc = LIM * .15;
-        const pg2 = LIM * .6
+        const begin_vert_nav = 100;
         const handleScroll = () => {
-            if(window.scrollY > end_scroll_loc) {
+            if(window.scrollY > begin_vert_nav) {
                 setTranslations([[0, 0], [100, 0], [200, 0]])
                 setVertical(true);
-                if(window.scrollY > pg2) {
-                    setPage(2);
-                } else {
-                    setPage(1);
-                }
-            } else if (end_scroll_loc >= window.scrollY) {
+            } else {
                 setTranslations(NAV_POSITIONS)
                 setVertical(false);
+            }
+
+            if(window.scrollY > page2) {
+                setPage(2);
+            } else if (window.scrollY > page1) {
+                setPage(1);
+            } else {
                 setPage(0);
             }
             //0 -> sh *.3 -> sh*.65

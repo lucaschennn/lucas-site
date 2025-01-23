@@ -76,7 +76,7 @@ function Experience() {
                     <h5>2021 – 2022</h5>
                 </div>
                 <div className="experience-right">
-                    I led collaborative discussion sections to review fundamental coding concepts.
+                    I led collaborative discussion sections to reinforce fundamental coding concepts in Python and prepare students for coding-heavy fields of study.
                     <div className="experience-pills">
                         <button className="experience-pill">Python 🐍</button>
                         <button className="experience-pill">Jupyter Notebook 📊</button>
