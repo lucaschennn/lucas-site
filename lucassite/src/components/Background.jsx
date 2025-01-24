@@ -69,15 +69,15 @@ function Background({page}) {
 
       <ParallaxBanner
         layers={[
-          { image: 'bg1/bg_2.jpg', translateY: [0, 60],},
+          { image: 'bg1/bg_2.webp', translateY: [0, 60],},
           {
             translateY: [0, 0],
             children: (
               <Intro parentLoaded={loaded}/>
             ),
           },
-          { image: 'bg1/middle_2.png', translateY: [0, 40],},
-          { image: 'bg1/front_2.png', translateY: [0, 30],},
+          { image: 'bg1/middle_2.webp', translateY: [0, 40],},
+          { image: 'bg1/front_2.webp', translateY: [0, 30],},
         ]}
         className={`bg-parallax ${!loaded ? "loading": ""}`}
         onLoad={handleImageLoad}

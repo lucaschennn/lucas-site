@@ -47,7 +47,7 @@ function Projects() {
                         Photographers' Favorites 2024🔗
                       </a>
                     </h4>
-                    <h5>Project Lead | Developer</h5>
+                    <h5 className="subtitle">Project Lead | Developer</h5>
                     <div className="thumbnail-container" onMouseLeave={() => replay()} style={{
                         backgroundImage: 'url(thumbnails/photog_fav.png)',
                         backgroundPosition: `${offset.x + 50}% ${offset.y + 50}%`,
@@ -72,7 +72,7 @@ function Projects() {
             <li className="project-section">
                 <div className="project-left">
                     <h4><a aria-label="Visit external project site" title="Visit external project site" target="_blank" href="https://lucaschennn.github.io">Lucas Chen Photo Portfolio 🔗</a></h4>
-                    <h5>Developer</h5>
+                    <h5 className="subtitle">Developer</h5>
                     <div className="thumbnail-container" onMouseLeave={() => replay()} style={{
                         backgroundImage: 'url(thumbnails/photosite.png)',
                         backgroundPosition: `${offset.x + 50}% ${offset.y + 50}%`,
@@ -95,8 +95,8 @@ function Projects() {
             <li className="project-section">
                 <div className="project-left">
                     <h4>Learning Dog Breeds</h4>
-                    <h5><em>for EECS 445 Machine Learning course</em></h5>
-
+                    <h5 className="subtitle">for EECS 445 Machine Learning course</h5>
+                    <img src="https://brand.umich.edu/assets/email-logo.png" className="experience-thumbnail"/>
                 </div>
                 <img>
                 </img>
@@ -114,8 +114,8 @@ function Projects() {
             <li className="project-section">
                 <div className="project-left">
                     <h4>Network File Server</h4>
-                    <h5><em>for EECS 482 Operating Systems course</em></h5>
-
+                    <h5 className="subtitle">for EECS 482 Operating Systems course</h5>
+                    <img src="https://brand.umich.edu/assets/email-logo.png" className="experience-thumbnail"/>
                 </div>
                 <img>
                 </img>

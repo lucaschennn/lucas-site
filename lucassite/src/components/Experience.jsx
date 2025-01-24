@@ -50,7 +50,7 @@ function Experience() {
                     <h5>June – August 2024</h5>
                 </div>
                 <div className="experience-right">
-                    I built the support request pipeline for Schwab advisors to easily submit bugfix and feature request forms focusing heavily on major use cases and user needs.
+                    I built the support request pipeline for Schwab advisors to easily submit bugfix and feature request forms focusing heavily on major use cases and practicality.
                     <div className="experience-pills">
                         <button className="experience-pill">Angular🔺</button>
                         <button className="experience-pill">Java🚀</button>
