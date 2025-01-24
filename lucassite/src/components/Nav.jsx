@@ -66,7 +66,7 @@ function Intro({selected, setPage}) {
         }}>
             <div style={{
                 position: 'relative',
-                top: `${navGradient}%`,
+                top: `${navGradient + 8}%`,
                 boxShadow: '-60px 0px 65px 15px #ccc',
                 display: `${vertical ? '' : 'none'}`,
             }}>
