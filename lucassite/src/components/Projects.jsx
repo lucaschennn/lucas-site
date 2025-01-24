@@ -60,7 +60,7 @@ function Projects() {
                 </img>
                 <div className="project-right">
                     <em>Photographers' Favorites</em> is an annual special edition published by the Michigan Daily that celebrates the work of its photographers' throughout the year.
-                    <br/><br/> I led the effort for the 2024 edition, collaborating with the Video staff, Copy Editors, Engineering, and of course the Photo staff to create an eye-catching and display of the Daily's talent.
+                    <br/><br/> I led the effort for the 2024 edition, collaborating with the Video staff, Copy Editors, Engineering, and of course the Photo staff to create an eye-catching display of the Daily's talent.
                     <br/><br/> Click the link to read!
                     <div className="experience-pills">
                       <button className="experience-pill">Wordpress📖</button>
