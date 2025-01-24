@@ -12,13 +12,9 @@ function Intro({selected, setPage}) {
     onSelect(update selected parent state)
     */
 
-    // const LIM =  Math.max( document.body.scrollHeight, document.body.offsetHeight, 
-    //     document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
     const page0 = 0;
-    // const page1 = LIM * .3;
-    // const page2 = LIM * .7;
-    const page1 = document.body.scrollHeight;
-    const page2 = document.body.scrollHeight * 2;
+    const page1 = document.body.scrollHeight - 100;
+    const page2 = document.body.scrollHeight * 2 - 100;
     const SCROLL_LOCS = [page0, page1, page2];
 
    const scrollAndSetPage = (pg) => {
@@ -47,7 +43,8 @@ function Intro({selected, setPage}) {
             } else {
                 setPage(0);
             }
-            //0 -> sh *.3 -> sh*.65
+            const end_scroll = document.body.scrollHeight * 3;
+            setNavGradient((window.scrollY / end_scroll) * 100);
         }
 
         window.addEventListener('scroll', handleScroll);
@@ -58,10 +55,24 @@ function Intro({selected, setPage}) {
 
     const [translations, setTranslations] = useState(NAV_POSITIONS)
     const [vertical, setVertical] = useState(false);
+    const [navGradient, setNavGradient] = useState(0);
 
 
     return (
     <div id="nav">
+        <div style={{
+            width: '200px',
+            height: '300px',
+        }}>
+            <div style={{
+                position: 'relative',
+                top: `${navGradient}%`,
+                boxShadow: '-60px 0px 60px 15px #ccc',
+                display: `${vertical ? '' : 'none'}`,
+            }}>
+                
+            </div>
+        </div>
         <ul className={vertical ? 'vertical' : 'horizontal'}>
             {PAGES.map((page, idx) => (
                 <li
