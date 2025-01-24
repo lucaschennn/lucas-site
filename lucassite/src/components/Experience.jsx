@@ -20,9 +20,9 @@ function Experience() {
                 <div className="experience-right">
                     I assist students who benefit from personalized, 1-on-1 tutoring sessions in their computer science courses.
                     <div className="experience-pills">
-                        <button className="experience-pill">C 📜</button>
-                        <button className="experience-pill">JavaScript 🟨</button>
-                        <button className="experience-pill">Python 🐍</button>
+                        <button className="experience-pill">C📜</button>
+                        <button className="experience-pill">JavaScript🟨</button>
+                        <button className="experience-pill">Python🐍</button>
                     </div>
                 </div>
             </li>
@@ -36,10 +36,10 @@ function Experience() {
                 <div className="experience-right">
                     I manage and edit all incoming photo essays and other multimedia pieces. My portfolio can be found <a href="https://lucaschennn.github.io" target="_blank">here</a>.
                     <div className="experience-pills">
-                        <button className="experience-pill">Adobe Suite 📸</button>
-                        <button className="experience-pill">Photomechanic ⚙️</button>
-                        <button className="experience-pill">Wordpress 📖</button>
-                        <button className="experience-pill">React ⚛️</button>
+                        <button className="experience-pill">Adobe Suite📸</button>
+                        <button className="experience-pill">Photomechanic⚙️</button>
+                        <button className="experience-pill">Wordpress📖</button>
+                        <button className="experience-pill">React⚛️</button>
                     </div>
                 </div>
             </li>
@@ -52,9 +52,9 @@ function Experience() {
                 <div className="experience-right">
                     I built the support request pipeline for Schwab advisors to easily submit bugfix and feature request forms.
                     <div className="experience-pills">
-                        <button className="experience-pill">Angular 🔺</button>
-                        <button className="experience-pill">Java 🚀</button>
-                        <button className="experience-pill">Jira API 🌐</button>
+                        <button className="experience-pill">Angular🔺</button>
+                        <button className="experience-pill">Java🚀</button>
+                        <button className="experience-pill">Jira API🌐</button>
                     </div>
                 </div>
             </li>
@@ -67,9 +67,9 @@ function Experience() {
                 <div className="experience-right">
                 I led an intern project to reimagine Schwab's website where our business proposal stood out and was adopted and implemented by Schwab.
                 <div className="experience-pills">
-                        <button className="experience-pill">Angular 🔺</button>
-                        <button className="experience-pill">Atlassian Suite 🛠️</button>
-                        <button className="experience-pill">Figma 🎨</button>
+                        <button className="experience-pill">Angular🔺</button>
+                        <button className="experience-pill">Atlassian Suite🛠️</button>
+                        <button className="experience-pill">Figma🎨</button>
                     </div>
                 </div>
             </li>
@@ -83,8 +83,8 @@ function Experience() {
                 <div className="experience-right">
                     I led collaborative discussion sections to reinforce fundamental coding concepts in Python and prepare students for coding-heavy fields of study.
                     <div className="experience-pills">
-                        <button className="experience-pill">Python 🐍</button>
-                        <button className="experience-pill">Jupyter Notebook 📊</button>
+                        <button className="experience-pill">Python🐍</button>
+                        <button className="experience-pill">Jupyter Notebook📊</button>
                     </div>
                 </div>
             </li>

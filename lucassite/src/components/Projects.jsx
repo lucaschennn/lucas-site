@@ -58,9 +58,9 @@ function Projects() {
                     <br/><br/> I led the effort for the 2024 edition, collaborating with the Video staff, Copy Editors, Engineering, and of course the Photo staff to create an eye-catching and display of the Daily's talent.
                     <br/><br/> Click the link to read! :)
                     <div className="experience-pills">
-                      <button className="experience-pill">Wordpress 📖</button>
-                      <button className="experience-pill">React ⚛️</button>
-                      <button className="experience-pill">Tailwind CSS 🌀</button>
+                      <button className="experience-pill">Wordpress📖</button>
+                      <button className="experience-pill">React⚛️</button>
+                      <button className="experience-pill">Tailwind CSS🌀</button>
                     </div>
                 </div>
             </li>
@@ -81,9 +81,28 @@ function Projects() {
                 <div className="project-right">
                     It's important for every photographer to have a point of contact for their clients. As a web developer, I figured why not build one from scratch.
                     <div className="experience-pills">
-                      <button className="experience-pill">Vite ✌️</button>
-                      <button className="experience-pill">React ⚛️</button>
-                      <button className="experience-pill">Cloudinary ☁️</button>
+                      <button className="experience-pill">Vite✌️</button>
+                      <button className="experience-pill">React⚛️</button>
+                      <button className="experience-pill">Cloudinary☁️</button>
+                    </div>
+                </div>
+            </li>
+            <li className="project-section">
+                <div className="project-left">
+                    <h4>Learning Dog Breeds</h4>
+                    <h5><em>for EECS 445 Machine Learning course</em></h5>
+
+                </div>
+                <img>
+                </img>
+                <div className="project-right">
+                    Using Convolutional Neural Networks, Transfer Leraning and Transformers, we were tasked to optimize a network that could classify images of dog breeds 🐶.
+                    <br/><br/>
+                    The project involved data cleaning, manipulating features, bootstrapping and cross validating samples, and developing a model from scratch to achieve this task. I was able to achieve a test accuracy of .71.
+                    <div className="experience-pills">
+                      <button className="experience-pill">Python🐍</button>
+                      <button className="experience-pill">Pytorch🔥</button>
+                      <button className="experience-pill">Sockets 🖧</button>
                     </div>
                 </div>
             </li>

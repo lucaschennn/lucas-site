@@ -251,6 +251,7 @@
   border-radius: 50px;
   font: inherit;
   font-size: clamp(10px,2.8vw,14px);
+  text-wrap: nowrap;
 
 }
 .experience-right a {
