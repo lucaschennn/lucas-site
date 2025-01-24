@@ -13,6 +13,7 @@ function Projects() {
 
   const replay = () => {
     setGifUpdate((prev) => prev + 1);
+    console.log("yar har har")
   }
 
   useEffect(() => {
@@ -41,12 +42,16 @@ function Projects() {
         <ul>
             <li className="project-section">
                 <div className="project-left">
-                    <h4>Photographers' Favorites 2024 <a aria-label="Visit external project site" title="Visit external project site" target="_blank" href="https://specials.michigandaily.com/2024/photographers-favorites/">🔗</a></h4>
+                    <h4>
+                      <a aria-label="Visit external project site" title="Visit external project site" target="_blank" href="https://specials.michigandaily.com/2024/photographers-favorites/">
+                        Photographers' Favorites 2024🔗
+                      </a>
+                    </h4>
                     <h5>Project Lead | Developer</h5>
                     <div className="thumbnail-container" onMouseLeave={() => replay()} style={{
                         backgroundImage: 'url(thumbnails/photog_fav.png)',
                         backgroundPosition: `${offset.x + 50}% ${offset.y + 50}%`,
-                        backgroundSize: '120%',
+                        backgroundSize: '110%',
                       }}>
                       <img className="project-gif" key={gifUpdate} src="thumbnails/photog_fav.gif"/>
                     </div>
@@ -56,7 +61,7 @@ function Projects() {
                 <div className="project-right">
                     <em>Photographers' Favorites</em> is an annual special edition published by the Michigan Daily that celebrates the work of its photographers' throughout the year.
                     <br/><br/> I led the effort for the 2024 edition, collaborating with the Video staff, Copy Editors, Engineering, and of course the Photo staff to create an eye-catching and display of the Daily's talent.
-                    <br/><br/> Click the link to read! :)
+                    <br/><br/> Click the link to read!
                     <div className="experience-pills">
                       <button className="experience-pill">Wordpress📖</button>
                       <button className="experience-pill">React⚛️</button>
@@ -66,7 +71,7 @@ function Projects() {
             </li>
             <li className="project-section">
                 <div className="project-left">
-                    <h4>Lucas Chen Photo Portfolio <a aria-label="Visit external project site" title="Visit external project site" target="_blank" href="https://lucaschennn.github.io">🔗</a></h4>
+                    <h4><a aria-label="Visit external project site" title="Visit external project site" target="_blank" href="https://lucaschennn.github.io">Lucas Chen Photo Portfolio 🔗</a></h4>
                     <h5>Developer</h5>
                     <div className="thumbnail-container" onMouseLeave={() => replay()} style={{
                         backgroundImage: 'url(thumbnails/photosite.png)',
@@ -102,7 +107,7 @@ function Projects() {
                     <div className="experience-pills">
                       <button className="experience-pill">Python🐍</button>
                       <button className="experience-pill">Pytorch🔥</button>
-                      <button className="experience-pill">Sockets 🖧</button>
+                      <button className="experience-pill">NumPy🔢</button>
                     </div>
                 </div>
             </li>

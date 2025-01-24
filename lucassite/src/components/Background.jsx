@@ -49,27 +49,35 @@ function Background({page}) {
  }
 
  const [opacity, setOpacity] = useState(0);
- const [loaded ,setLoaded] = useState(false);
+ const [loaded, setLoaded] = useState(false);
 
  const handleImageLoad = () => {
-  console.log("what")
   setLoaded(true);
  }
 
   return (
     <div id="background">
+      <div id="loadScreen" className={loaded ? 'hidden':''}>
+        <div id="spinner">
+          <ul>
+            <li style={{'--i': 1}}>🐶</li>
+            <li style={{'--i': 2}}>🐶</li>
+            <li style={{'--i': 3}}>🐶</li>
+          </ul>
+        </div>
+      </div>
 
       <ParallaxBanner
         layers={[
-          { image: 'bg1/bg.jpg', translateY: [0, 60],},
+          { image: 'bg1/bg_2.jpg', translateY: [0, 60],},
           {
             translateY: [0, 0],
             children: (
-              <Intro/>
+              <Intro parentLoaded={loaded}/>
             ),
           },
-          { image: 'bg1/middle.png', translateY: [0, 40],},
-          { image: 'bg1/front.png', translateY: [0, 30],},
+          { image: 'bg1/middle_2.png', translateY: [0, 40],},
+          { image: 'bg1/front_2.png', translateY: [0, 30],},
         ]}
         className={`bg-parallax ${!loaded ? "loading": ""}`}
         onLoad={handleImageLoad}

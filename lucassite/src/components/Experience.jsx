@@ -34,7 +34,7 @@ function Experience() {
                     <h5>2021 – Present</h5>
                 </div>
                 <div className="experience-right">
-                    I manage and edit all incoming photo essays and other multimedia pieces. My portfolio can be found <a href="https://lucaschennn.github.io" target="_blank">here</a>.
+                    I advise, manage and edit all photo essays and other multimedia pieces. My portfolio can be found <a href="https://lucaschennn.github.io" target="_blank">here</a>.
                     <div className="experience-pills">
                         <button className="experience-pill">Adobe Suite📸</button>
                         <button className="experience-pill">Photomechanic⚙️</button>
@@ -50,7 +50,7 @@ function Experience() {
                     <h5>June – August 2024</h5>
                 </div>
                 <div className="experience-right">
-                    I built the support request pipeline for Schwab advisors to easily submit bugfix and feature request forms.
+                    I built the support request pipeline for Schwab advisors to easily submit bugfix and feature request forms focusing heavily on major use cases and user needs.
                     <div className="experience-pills">
                         <button className="experience-pill">Angular🔺</button>
                         <button className="experience-pill">Java🚀</button>
@@ -65,7 +65,7 @@ function Experience() {
                     <h5>June – August 2023</h5>
                 </div>
                 <div className="experience-right">
-                I led an intern project to reimagine Schwab's website where our business proposal stood out and was adopted and implemented by Schwab.
+                I led an intern project to reimagine Schwab's website from the lens of financial education and customizability. Of the 400+ interns presenting, our business proposal was adopted and implemented by Schwab.
                 <div className="experience-pills">
                         <button className="experience-pill">Angular🔺</button>
                         <button className="experience-pill">Atlassian Suite🛠️</button>

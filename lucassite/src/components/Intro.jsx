@@ -6,18 +6,17 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 
 import '../App.css'
 
-function Intro() {
+function Intro({parentLoaded}) {
   
-  const [loaded ,setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const handleImageLoad = () => {
-    console.log("weoer")
     setLoaded(true)
   }
 
   return (
     <div id="intro">
-      <div id="bio">
+      <div id="bio" className={!parentLoaded ? "loading" : ""}>
         <h1>Hi, I'm Lucas Chen!</h1>
         <p>I'm a student at the University of Michigan studying computer science and UX design. </p>
         <div id="socials">
