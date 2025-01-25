@@ -7,6 +7,15 @@ import Intro from './Intro.jsx'
 
 import '../App.css'
 
+const ANIMALS = ['🐶','🐵','🐼','🐱','🦊','🦝','🐮','🐹','🐰','🐻'];
+
+const getRandomLoadingIcons = () => {
+  const shuffled = [...ANIMALS].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 3);
+};
+
+const loadingIcons = getRandomLoadingIcons();
+
 function Background({page, min_page_height}) {
   /*
     props.useColorBG (bool)
@@ -39,6 +48,7 @@ function Background({page, min_page_height}) {
     };
 
     window.addEventListener('load', handleLoad);
+    window.data = window.data; // may help mobile loads
 
     //remove loading icons after period
     const clearLoad = setTimeout(() => {
@@ -64,9 +74,9 @@ function Background({page, min_page_height}) {
       <div id="loadScreen" className={loaded ? 'hidden':''}>
         <div id="spinner">
           <ul>
-            <li style={{'--i': 1}}>🐶</li>
-            <li style={{'--i': 2}}>🐶</li>
-            <li style={{'--i': 3}}>🐶</li>
+            <li style={{'--i': 1}}>{loadingIcons[0]}</li>
+            <li style={{'--i': 2}}>{loadingIcons[1]}</li>
+            <li style={{'--i': 3}}>{loadingIcons[2]}</li>
           </ul>
         </div>
       </div>

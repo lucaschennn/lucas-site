@@ -28,7 +28,7 @@ function Intro() {
   }, [])
 
   return (
-    <div id="intro" className={`${loaded? '':'hidden'}`} style={{opacity: opacity}}>
+    <div id="intro" className={`${loaded? '':'hidden'}`} style={{opacity: loaded? opacity : 0}}>
       <div id="bio">
         <h1>Hi, I'm Lucas Chen!</h1>
         <p>I'm a student at the University of Michigan studying computer science and UX design. </p>

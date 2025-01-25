@@ -77,7 +77,7 @@
 #spinner li {
   display: inline-block;
   transform: translateY(20px); /* Start slightly below */
-  animation: fadeUp 2s infinite alternate; /* Animate with 1s duration */
+  animation: fadeUp .8s ease infinite alternate; /* Animate with 1s duration */
   animation-delay: calc(0.3s * var(--i)); /* Stagger the animation */
 }
 @keyframes fadeUp {
@@ -154,7 +154,7 @@
   justify-content: space-evenly;
   height: auto;
   padding: 150px 0 0 0;
-  transition: opacity .3s ease-in;
+  transition: opacity .2s ease-in;
 }
 
 #intro.hidden {
