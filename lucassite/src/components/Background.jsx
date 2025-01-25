@@ -53,7 +53,7 @@ function Background({page, min_page_height}) {
     //remove loading icons after period
     const clearLoad = setTimeout(() => {
       setLoaded(true);
-    }, 2000);
+    }, 1000);
 
     return () => {
       window.removeEventListener('load', handleLoad);
