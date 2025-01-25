@@ -29,8 +29,8 @@ function App() {
   const [page, setPage] = useState(0);
   const MIN_PAGE_HEIGHTS = {
     xs: 1200,
-    s: 1200,
-    md: 1200,
+    s: 1400,
+    md: 1600,
   }
   const min_page_height = () => {
     const screenWidth = window.innerWidth;

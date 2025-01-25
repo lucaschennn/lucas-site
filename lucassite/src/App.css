@@ -214,6 +214,9 @@
 
 #nav ul {
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   list-style-type: none;
 }
 

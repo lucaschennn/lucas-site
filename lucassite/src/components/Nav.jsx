@@ -28,7 +28,7 @@ function Intro({selected, setPage, min_page_height}) {
     useEffect(() => {
         const begin_vert_nav = 100;
         const handleScroll = () => {
-            const end_scroll = min_page_height * 3 - window.innerHeight;
+            const end_scroll = min_page_height * 2;
             setNavGradient((window.scrollY / end_scroll) * 100);
 
             if(window.scrollY > begin_vert_nav) {
@@ -66,8 +66,10 @@ function Intro({selected, setPage, min_page_height}) {
     return (
     <div id="nav">
         <div style={{
+            position: 'absolute',
             width: '200px',
-            height: '300px',
+            height: '215px',
+            top: '20px',
         }}>
             <div style={{
                 position: 'relative',

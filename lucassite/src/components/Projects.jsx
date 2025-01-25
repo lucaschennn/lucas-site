@@ -106,7 +106,7 @@ function Projects({top}) {
                     The project involved data cleaning, manipulating features, bootstrapping and cross validating samples, and developing a model from scratch to achieve this task. I was able to achieve a test accuracy of .71.
                     <div className="experience-pills">
                       <button className="experience-pill">Python🐍</button>
-                      <button className="experience-pill">Pytorch🔥</button>
+                      <button className="experience-pill">PyTorch🔥</button>
                       <button className="experience-pill">NumPy🔢</button>
                     </div>
                 </div>

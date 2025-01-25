@@ -30,7 +30,7 @@ function Background({page, min_page_height}) {
   */
   useEffect(() => {
     window.scrollTo(0, 0);
-    const end = window.innerHeight;
+    const end = window.innerHeight / 1.5;
     console.log(end);
     const handleScroll = () => {
       setOpacity(window.scrollY > end);
