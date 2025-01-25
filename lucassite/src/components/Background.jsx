@@ -47,17 +47,21 @@ function Background({page, min_page_height}) {
       setLoaded(true);
     };
 
-    window.addEventListener('load', handleLoad);
-    window.data = window.data; // may help mobile loads
 
     //remove loading icons after period
     const clearLoad = setTimeout(() => {
       setLoaded(true);
     }, 1000);
 
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad, false);
+    }
+
     return () => {
-      window.removeEventListener('load', handleLoad);
-      clearTimeout(clearLoad);
+            clearTimeout(clearLoad);
+            window.removeEventListener('load', handleLoad);
     };
   }, []);
 
