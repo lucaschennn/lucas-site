@@ -6,7 +6,7 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 
 import '../App.css'
 
-function Projects() {
+function Projects({top}) {
 
   const [gifUpdate, setGifUpdate] = useState(0);
   const [offset, setOffset] = useState({ x: 0, y: 0})
@@ -38,7 +38,7 @@ function Projects() {
   }, []);
 
   return (
-    <div id="projects">
+    <div id="projects" style={{top: `${top}px`}}>
         <ul>
             <li className="project-section">
                 <div className="project-left">

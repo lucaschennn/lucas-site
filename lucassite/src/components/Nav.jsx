@@ -6,19 +6,19 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 
 import '../App.css'
 
-function Intro({selected, setPage}) {
+function Intro({selected, setPage, min_page_height}) {
     /*
     selected: 0, 1, 2 (which page is selected)
     onSelect(update selected parent state)
     */
 
     const page0 = 0;
-    const page1 = document.body.scrollHeight - 100;
-    const page2 = document.body.scrollHeight * 2 - 100;
+    const page1 = min_page_height - 100;
+    const page2 = min_page_height * 2 - 100;
     const SCROLL_LOCS = [page0, page1, page2];
 
    const scrollAndSetPage = (pg) => {
-    window.scrollTo({top: SCROLL_LOCS[pg], behavior: 'smooth'})
+    window.scrollTo({top: SCROLL_LOCS[pg] + 1, behavior: 'smooth'})
     setPage(pg);
    }
 
@@ -28,6 +28,9 @@ function Intro({selected, setPage}) {
     useEffect(() => {
         const begin_vert_nav = 100;
         const handleScroll = () => {
+            const end_scroll = min_page_height * 3 - window.innerHeight;
+            setNavGradient((window.scrollY / end_scroll) * 100);
+
             if(window.scrollY > begin_vert_nav) {
                 setTranslations([[0, 0], [100, 0], [200, 0]])
                 setVertical(true);
@@ -36,15 +39,17 @@ function Intro({selected, setPage}) {
                 setVertical(false);
             }
 
-            if(window.scrollY > page2) {
+            if(window.scrollY >= page2) {
                 setPage(2);
-            } else if (window.scrollY > page1) {
+                return;
+            } else if (window.scrollY >= page1) {
                 setPage(1);
+                return;
             } else {
                 setPage(0);
+                return;
             }
-            const end_scroll = document.body.scrollHeight * 3;
-            setNavGradient((window.scrollY / end_scroll) * 100);
+
         }
 
         window.addEventListener('scroll', handleScroll);
@@ -66,7 +71,7 @@ function Intro({selected, setPage}) {
         }}>
             <div style={{
                 position: 'relative',
-                top: `${navGradient + 8}%`,
+                top: `${navGradient}%`,
                 boxShadow: '-60px 0px 75px 15px #ccc',
                 display: `${vertical ? '' : 'none'}`,
             }}>

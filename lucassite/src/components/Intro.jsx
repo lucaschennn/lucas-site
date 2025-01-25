@@ -6,17 +6,30 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 
 import '../App.css'
 
-function Intro({parentLoaded}) {
+function Intro() {
   
   const [loaded, setLoaded] = useState(false);
+  const [opacity, setOpacity] = useState(1);
 
   const handleImageLoad = () => {
     setLoaded(true)
   }
 
+  useEffect(() => {
+    const end = window.innerHeight / 2;
+    const handleScroll = () => {
+      setOpacity(Math.max(1 - (window.scrollY / end), 0));
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+  }, [])
+
   return (
-    <div id="intro">
-      <div id="bio" className={!parentLoaded ? "loading" : ""}>
+    <div id="intro" className={`${loaded? '':'hidden'}`} style={{opacity: opacity}}>
+      <div id="bio">
         <h1>Hi, I'm Lucas Chen!</h1>
         <p>I'm a student at the University of Michigan studying computer science and UX design. </p>
         <div id="socials">
@@ -33,7 +46,7 @@ function Intro({parentLoaded}) {
         </div>
       </div>
       <div>
-        <img id="headshot" src="headshot.jpg" className={!loaded ? "loading" : ""} onLoad={handleImageLoad}></img>
+        <img id="headshot" src="headshot.jpg" onLoad={handleImageLoad}></img>
       </div>
     </div>
   )

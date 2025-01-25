@@ -6,10 +6,10 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 
 import '../App.css'
 
-function Experience() {
+function Experience({top}) {
 
   return (
-    <div id="experience">
+    <div id="experience" style={{top: `${top}px`}}>
         <ul>
             <li className="experience-section">
                 <img src="https://brand.umich.edu/assets/email-logo.png" className="experience-thumbnail"/>

@@ -27,15 +27,29 @@ function App() {
 
 
   const [page, setPage] = useState(0);
+  const MIN_PAGE_HEIGHTS = {
+    xs: 1200,
+    s: 1200,
+    md: 1200,
+  }
+  const min_page_height = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 768) {
+      return MIN_PAGE_HEIGHTS.xs;
+    } else if (screenWidth <= 900) {
+      return MIN_PAGE_HEIGHTS.s;
+    }
+    return MIN_PAGE_HEIGHTS.md;
+  }
 
   return (
     <>
-      <Nav selected={page} setPage={setPage}/>
+      <Nav selected={page} setPage={setPage} min_page_height={min_page_height()}/>
       <Background page={page}/>
       <div>
         <Intro/>
-        <Experience/>
-        <Projects/>
+        <Experience top={min_page_height()}/>
+        <Projects top={min_page_height() * 2}/>
       </div>
     </>
   )

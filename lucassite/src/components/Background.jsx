@@ -7,7 +7,7 @@ import Intro from './Intro.jsx'
 
 import '../App.css'
 
-function Background({page}) {
+function Background({page, min_page_height}) {
   /*
     props.useColorBG (bool)
     props.colorOpt
@@ -19,19 +19,12 @@ function Background({page}) {
     "bg1": 3,
   }
   */
-  const LIM =  Math.max( document.body.scrollHeight, document.body.offsetHeight, 
-    document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
   useEffect(() => {
     window.scrollTo(0, 0);
-    const start_scroll_loc = (document.body.scrollHeight) * .4;
-    const end_scroll_loc = (document.body.scrollHeight) * .7;
-    console.log(start_scroll_loc, end_scroll_loc, LIM)
+    const end = window.innerHeight;
+    console.log(end);
     const handleScroll = () => {
-      if(window.scrollY < start_scroll_loc) {
-        setOpacity(0);
-      } else {
-        window.scrollY > end_scroll_loc ? setOpacity(1) : setOpacity(.5);
-      }
+      setOpacity(window.scrollY > end);
     }
 
     window.addEventListener('scroll', handleScroll);
@@ -39,21 +32,27 @@ function Background({page}) {
         window.removeEventListener('scroll', handleScroll);
     };
   }, [])
-  // useEffect(() => {
-  //   setOpacity(1 - (page  / 2));
-  // }, [page])
+
+  useEffect(() => {
+    const handleLoad = () => {
+      setLoaded(true);
+    };
+
+    window.addEventListener('load', handleLoad);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('load', handleLoad);
+    };
+  }, []);
 
  const urls = ["bg1/bg.jpg", "bg1/front.png"]
  const bgImgStyle = {
   backgroundImage: urls.map(img => `url(${img})`).join(", "),
  }
 
- const [opacity, setOpacity] = useState(0);
+ const [opacity, setOpacity] = useState(false);
  const [loaded, setLoaded] = useState(false);
-
- const handleImageLoad = () => {
-  setLoaded(true);
- }
 
   return (
     <div id="background">
@@ -70,20 +69,13 @@ function Background({page}) {
       <ParallaxBanner
         layers={[
           { image: 'bg1/bg_2.webp', translateY: [0, 60],},
-          {
-            translateY: [0, 0],
-            children: (
-              <Intro parentLoaded={loaded}/>
-            ),
-          },
           { image: 'bg1/middle_2.webp', translateY: [0, 40],},
           { image: 'bg1/front_2.webp', translateY: [0, 30],},
         ]}
         className={`bg-parallax ${!loaded ? "loading": ""}`}
-        onLoad={handleImageLoad}
       />
-      <div className={`bg-filter ${page > 0 ? "blur": ""}`}></div>
-      <div className={`bg-color ${opacity === 1 ? "full-solid": ""}`}></div>
+      {/* <div className={`bg-filter ${page > 0 ? "blur": ""}`}></div> */}
+      <div className={`bg-color ${opacity === true ? "full-solid": ""}`}></div>
     </div>
   )
 }
