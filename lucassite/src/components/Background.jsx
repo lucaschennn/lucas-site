@@ -40,9 +40,14 @@ function Background({page, min_page_height}) {
 
     window.addEventListener('load', handleLoad);
 
-    // Clean up the event listener when the component unmounts
+    //remove loading icons after period
+    const clearLoad = setTimeout(() => {
+      setLoaded(true);
+    }, 2000);
+
     return () => {
       window.removeEventListener('load', handleLoad);
+      clearTimeout(clearLoad);
     };
   }, []);
 
