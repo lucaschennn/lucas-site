@@ -84,6 +84,15 @@ function Background({page, min_page_height}) {
           </ul>
         </div>
       </div>
+      <div id="goGoGo" className={opacity && page === 0 ? '':'hidden'}>
+        <div id="scrollDown">
+            <ul>
+              <li style={{'--i': 1}}>⏬</li>
+              <li style={{'--i': 2}}>⏬</li>
+              <li style={{'--i': 3}}>⏬</li>
+            </ul>
+        </div>
+      </div>
 
       <ParallaxBanner
         layers={[
@@ -94,7 +103,8 @@ function Background({page, min_page_height}) {
         className={`bg-parallax ${!loaded ? "loading": ""}`}
       />
       {/* <div className={`bg-filter ${page > 0 ? "blur": ""}`}></div> */}
-      <div className={`bg-color ${opacity === true ? "full-solid": ""}`}></div>
+      <div className={`bg-color ${opacity === true ? "full-solid": ""}`}>
+      </div>
     </div>
   )
 }

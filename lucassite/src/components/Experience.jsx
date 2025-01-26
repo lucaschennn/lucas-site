@@ -6,12 +6,12 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 
 import '../App.css'
 
-function Experience({top}) {
+function Experience({top, page}) {
 
   return (
     <div id="experience" style={{top: `${top}px`}}>
         <ul>
-            <li className="experience-section">
+            <li className={page === 1 ? 'experience-section':'experience-section hidden'}>
                 <img src="https://brand.umich.edu/assets/email-logo.png" className="experience-thumbnail"/>
                 <div className="experience-left">
                     <h4>UMich Private Tutor</h4>
@@ -26,7 +26,7 @@ function Experience({top}) {
                     </div>
                 </div>
             </li>
-            <li className="experience-section">
+            <li className={page === 1 ? 'experience-section':'experience-section hidden'}>
                 <img src="thumbnails/daily_logo.png" className="experience-thumbnail"/>
                 <div className="experience-left">
                     <h4>The Michigan Daily</h4>
@@ -43,7 +43,7 @@ function Experience({top}) {
                     </div>
                 </div>
             </li>
-            <li className="experience-section">
+            <li className={page === 1 ? 'experience-section':'experience-section hidden'}>
                 <img src="thumbnails/schwab.png" className="experience-thumbnail"/>
                 <div className="experience-left">
                     <h4>Charles Schwab Intern (SPIRAL)</h4>
@@ -58,7 +58,7 @@ function Experience({top}) {
                     </div>
                 </div>
             </li>
-            <li className="experience-section">
+            <li className={page === 1 ? 'experience-section':'experience-section hidden'}>
                 <img src="thumbnails/schwab.png" className="experience-thumbnail"/>
                 <div className="experience-left">
                     <h4>Charles Schwab Intern (SPIDER)</h4>
@@ -73,7 +73,7 @@ function Experience({top}) {
                     </div>
                 </div>
             </li>
-            <li className="experience-section">
+            <li className={page === 1 ? 'experience-section':'experience-section hidden'}>
                 <img src="https://brand.umich.edu/assets/email-logo.png" className="experience-thumbnail"/>
                 <div className="experience-left">
                     <h4>UMich Teaching Assistant</h4>

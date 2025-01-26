@@ -48,8 +48,8 @@ function App() {
       <Background page={page}/>
       <div>
         <Intro/>
-        <Experience top={min_page_height()}/>
-        <Projects top={min_page_height() * 2}/>
+        <Experience top={min_page_height()} page={page}/>
+        <Projects top={min_page_height() * 2} page={page}/>
       </div>
     </>
   )

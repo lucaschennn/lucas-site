@@ -70,6 +70,7 @@
 }
 #spinner ul {
   padding: 0;
+  margin: 0;
   vertical-align: middle;
   list-style-type: none;
 }
@@ -249,11 +250,13 @@
   padding: 5px;
 }
 
+
 #experience ul {
   display: flex;
   flex-direction: column;
   list-style: none;
   padding-left: 10px;
+  overflow: hidden;
 }
 
 #experience .experience-section {
@@ -262,6 +265,11 @@
   align-items: flex-start;
   margin-bottom: 50px;
   gap: 15px;
+  transition: all .5s ease-out;
+}
+.experience-section.hidden {
+  transform: translateX(300px);
+  opacity: 0;
 }
 
 .experience-thumbnail {
@@ -317,10 +325,11 @@
 }
 
 #projects ul {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding-left: 10px;
+  overflow: hidden;
 }
 
 .project-section {
@@ -329,6 +338,11 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  transition: all .5s ease-out;
+}
+.project-section.hidden {
+  transform: translateX(300px);
+  opacity: 0;
 }
 
 .thumbnail-container {
@@ -368,4 +382,35 @@
 .project-right {
   flex-basis: 70%;
   font-size: clamp(12px,1.8vw,16px);
+}
+
+#goGoGo {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  transition: opacity .2s ease-out .5s; /* delay when going from hidden to non-hidden*/
+}
+#goGoGo.hidden {
+  opacity: 0;
+  transition: opacity .2s ease-out 0s; /* no delay when going from non-hidden to hidden*/
+}
+
+#scrollDown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(32px, 3vw, 64px);
+  text-align: center;
+}
+#scrollDown ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+#scrollDown li {
+  transform: translateY(20px); /* Start slightly below */
+  animation: fadeUp .5s ease-in infinite alternate; /* Animate with 1s duration */
+  animation-delay: calc(0.1s * var(--i)); /* Stagger the animation */
 }

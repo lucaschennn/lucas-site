@@ -13,8 +13,8 @@ function Intro({selected, setPage, min_page_height}) {
     */
 
     const page0 = 0;
-    const page1 = min_page_height - 100;
-    const page2 = min_page_height * 2 - 100;
+    const page1 = min_page_height - 200;
+    const page2 = min_page_height * 2 - 200;
     const SCROLL_LOCS = [page0, page1, page2];
 
    const scrollAndSetPage = (pg) => {

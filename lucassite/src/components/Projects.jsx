@@ -6,7 +6,7 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 
 import '../App.css'
 
-function Projects({top}) {
+function Projects({top, page}) {
 
   const [gifUpdate, setGifUpdate] = useState(0);
   const [offset, setOffset] = useState({ x: 0, y: 0})
@@ -40,7 +40,7 @@ function Projects({top}) {
   return (
     <div id="projects" style={{top: `${top}px`}}>
         <ul>
-            <li className="project-section">
+            <li className={page === 2 ? 'project-section':'project-section hidden'}>
                 <div className="project-left">
                     <h4>
                       <a aria-label="Visit external project site" title="Visit external project site" target="_blank" href="https://specials.michigandaily.com/2024/photographers-favorites/">
@@ -69,7 +69,7 @@ function Projects({top}) {
                     </div>
                 </div>
             </li>
-            <li className="project-section">
+            <li className={page === 2 ? 'project-section':'project-section hidden'}>
                 <div className="project-left">
                     <h4><a aria-label="Visit external project site" title="Visit external project site" target="_blank" href="https://lucaschennn.github.io">Lucas Chen Photo Portfolio 🔗</a></h4>
                     <h5 className="subtitle">Developer</h5>
@@ -92,7 +92,7 @@ function Projects({top}) {
                     </div>
                 </div>
             </li>
-            <li className="project-section">
+            <li className={page === 2 ? 'project-section':'project-section hidden'}>
                 <div className="project-left">
                     <h4>Learning Dog Breeds</h4>
                     <h5 className="subtitle">for EECS 445 Machine Learning course</h5>
@@ -111,7 +111,7 @@ function Projects({top}) {
                     </div>
                 </div>
             </li>
-            <li className="project-section">
+            <li className={page === 2 ? 'project-section':'project-section hidden'}>
                 <div className="project-left">
                     <h4>Network File Server</h4>
                     <h5 className="subtitle">for EECS 482 Operating Systems course</h5>
