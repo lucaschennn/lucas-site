@@ -173,6 +173,7 @@
 
 #bio {
   width: 500px;
+  padding-left: 15px;
   h1 {
     margin: 0;
     font-size: clamp(24px, 3vw, 48px);
@@ -196,6 +197,7 @@
 }
 
 #intro #headshot {
+  padding-right: 15px;
   border-radius: 50%;
   width: clamp(150px, 20vw, 300px);
   height: clamp(150px, 20vw, 300px);
@@ -309,7 +311,11 @@
   font: inherit;
   font-size: clamp(10px,1.8vw,14px);
   text-wrap: nowrap;
-
+  box-shadow: 1px 10px 6px -6px rgb(0,0,0,.4);
+  transition: all .3s ease;
+}
+.experience-pill:hover {
+  transform: scale(1.1);
 }
 .experience-right a {
   color: inherit;

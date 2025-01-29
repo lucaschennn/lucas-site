@@ -46,7 +46,7 @@ function Intro() {
         </div>
       </div>
       <div>
-        <img id="headshot" src="headshot.jpg" onLoad={handleImageLoad}></img>
+        <img id="headshot" src="headshot.webp" onLoad={handleImageLoad}></img>
       </div>
     </div>
   )

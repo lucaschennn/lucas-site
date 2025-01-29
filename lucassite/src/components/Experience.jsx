@@ -7,7 +7,6 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 import '../App.css'
 
 function Experience({top, page}) {
-
   return (
     <div id="experience" style={{top: `${top}px`}}>
         <ul>
