@@ -101,9 +101,12 @@ function Background({page, min_page_height}) {
           { image: 'bg1/front_2.webp', translateY: [0, 30],},
         ]}
         className={`bg-parallax ${!loaded ? "loading": ""}`}
+        style={{
+          WebkitMaskImage: "linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%)",
+        }}
       />
       {/* <div className={`bg-filter ${page > 0 ? "blur": ""}`}></div> */}
-      <div className={`bg-color ${opacity === true ? "full-solid": ""}`}>
+      <div className={`bg-color ${page > 0 ? "full-solid": ""}`}>
       </div>
     </div>
   )

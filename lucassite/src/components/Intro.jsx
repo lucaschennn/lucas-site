@@ -18,7 +18,7 @@ function Intro() {
   useEffect(() => {
     const end = window.innerHeight / 2;
     const handleScroll = () => {
-      setOpacity(Math.max(1 - (window.scrollY / end), 0));
+      setOpacity(Math.max(1 - (window.scrollY / end) ** 4, 0)); // decrease strictly faster
     }
 
     window.addEventListener('scroll', handleScroll);
