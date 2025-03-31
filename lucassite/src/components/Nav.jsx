@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { Parallax } from 'react-scroll-parallax'
 import { ParallaxBanner } from 'react-scroll-parallax';
 
 
 import '../App.css'
 
-function Intro({selected, setPage, min_page_height}) {
+function Nav({selected, setPage, min_page_height}) {
     /*
     selected: 0, 1, 2 (which page is selected)
     onSelect(update selected parent state)
@@ -64,36 +63,43 @@ function Intro({selected, setPage, min_page_height}) {
 
 
     return (
-    <div id="nav">
-        <div style={{
-            position: 'absolute',
-            width: '200px',
-            height: '215px',
-            top: '20px',
-        }}>
+    <>
+        <div id="nav">
             <div style={{
-                position: 'relative',
-                top: `${navGradient}%`,
-                boxShadow: '-60px 0px 75px 15px #ccc',
-                display: `${vertical ? '' : 'none'}`,
+                position: 'absolute',
+                width: '200px',
+                height: '215px',
+                top: '20px',
             }}>
-                
+                <div style={{
+                    position: 'relative',
+                    top: `${navGradient}%`,
+                    boxShadow: '-60px 0px 75px 15px #ccc',
+                    display: `${vertical ? '' : 'none'}`,
+                }}>
+                    
+                </div>
             </div>
+            <ul className={vertical ? 'vertical' : 'horizontal'}>
+                {PAGES.map((page, idx) => (
+                    <li
+                        key={idx}
+                        style={{top: translations[idx][0] + 'px', left: translations[idx][1] + 'px'}}
+                        className={idx === selected ? 'selected' : ''}
+                        onClick={() => scrollAndSetPage(idx)}
+                    >
+                        {page}
+                    </li>
+                ))}
+            </ul>
         </div>
-        <ul className={vertical ? 'vertical' : 'horizontal'}>
-            {PAGES.map((page, idx) => (
-                <li
-                    key={idx}
-                    style={{top: translations[idx][0] + 'px', left: translations[idx][1] + 'px'}}
-                    className={idx === selected ? 'selected' : ''}
-                    onClick={() => scrollAndSetPage(idx)}
-                >
-                    {page}
-                </li>
-            ))}
-        </ul>
-    </div>
+        <div id="gamesNav">
+            <a href="/tcg">
+                Play the hit new Trading Card Game!
+            </a>
+        </div>
+    </>
     )
     }
 
-export default Intro
+export default Nav

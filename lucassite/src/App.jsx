@@ -8,23 +8,11 @@ import Nav from './components/Nav.jsx'
 import Experience from './components/Experience.jsx'
 import Projects from './components/Projects.jsx';
 import { ParallaxBanner } from 'react-scroll-parallax';
+import { AuthProvider } from './components/AuthContext.jsx'
 
 import './App.css'
 
 function App() {
-  /*
-
-  will call components such as <Background/>, <KebabMenu/>
-
-  on load: header, bio, avatar will transition in!
-
-  state:
-    settings: {useColorBG: bool, colorOpt: a | b | c | d, picOpt: e | f | g, slideshow: bool}
-    scrollYPos: if scrollYPos > thresh, stop slideshow transitions; use for parallax and stuff
-    page: 0,1,2 depending on if home, work, or projects
-  */
-
-
 
   const [page, setPage] = useState(0);
   const MIN_PAGE_HEIGHTS = {
@@ -43,7 +31,7 @@ function App() {
   }
 
   return (
-    <>
+    <AuthProvider>
       <Nav selected={page} setPage={setPage} min_page_height={min_page_height()}/>
       <Background page={page}/>
       <div>
@@ -51,7 +39,7 @@ function App() {
         <Experience top={min_page_height()} page={page}/>
         <Projects top={min_page_height() * 2} page={page}/>
       </div>
-    </>
+    </AuthProvider>
   )
 }
 

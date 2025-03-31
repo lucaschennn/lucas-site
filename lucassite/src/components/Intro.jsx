@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { Parallax } from 'react-scroll-parallax'
 import { ParallaxBanner } from 'react-scroll-parallax';
 
-
 import '../App.css'
 
 function Intro() {
