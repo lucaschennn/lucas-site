@@ -59,9 +59,9 @@ const Login = () => {
           <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
           {
-            isLogin ? <button onClick={handleLogin}>Login</button> : <button onClick={handleSignup}>Sign Up</button>
+            isLogin ? <button type="button" onClick={handleLogin}>Login</button> : <button type="button" onClick={handleSignup}>Sign Up</button>
           }
-          <button onClick={handleGoogleLogin}>Login with Google</button>
+          <button type="button" onClick={handleGoogleLogin}>Login with Google</button>
         </form>
       ) :
       <button onClick={() => setDisplay(true)}>Click here to log in</button>
