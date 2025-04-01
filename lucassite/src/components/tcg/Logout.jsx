@@ -1,9 +1,17 @@
-import { useAuth } from "../AuthContext.jsx";
+import { getAuth, signOut } from "firebase/auth";
+import { auth } from "../../firebase.js";
 
 const Logout = () => {
-  const { user, logout } = useAuth();
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      //Signed out
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
-  return user ? <button onClick={logout}>Logout</button> : null;
+  return <button onClick={handleLogout}>Logout</button>;
 };
 
 export default Logout;

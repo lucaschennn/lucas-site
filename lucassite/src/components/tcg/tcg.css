@@ -1,0 +1,11 @@
+#signInForm {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#closeButton {
+    all: unset;
+    cursor: pointer;
+}
