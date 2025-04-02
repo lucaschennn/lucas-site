@@ -29,7 +29,6 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
-        console.log("here")
       })
       .catch((error) => {
         const errorCode = error.code;

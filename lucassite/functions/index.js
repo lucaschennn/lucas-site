@@ -13,7 +13,6 @@ const {logger} = require("firebase-functions/v2");
 
 // Dependencies for the addMessage function.
 const {getDatabase} = require("firebase-admin/database");
-const sanitizer = require("./sanitizer");
 
 // // Suggested code may be subject to a license. Learn more: ~LicenseLog:4008740532.
 // // Suggested code may be subject to a license. Learn more: ~LicenseLog:3351593768.
@@ -25,28 +24,41 @@ const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
 
 admin.initializeApp();
+const db = getFirestore();
 
-exports.getUserData =onCall(async (data, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
+exports.getUserData = onCall(
+    { cors: true},
+    async(request) => {
+    const context = request.data.context;
+    if (!context.uid) {
+        throw new functions.https.HttpsError('not-found', 'No UID Found!');
     }
 
-    const uid = context.auth.uid;
+    const uid = context.uid;
+    const userData = [];
     try {
-        const userDoc = await admin.firestore().collection('users').doc(uid).get();
-
-        if (!userDoc.exists) {
+        const usersRef = db.collection('users')
+        const snapshot = await usersRef
+                .where("uid", "==", uid)
+                .get()
+        if (snapshot.empty) {
             throw new functions.https.HttpsError('not-found', 'User data not found.');
         }
 
-        return userDoc.data();
+        snapshot.forEach(doc => {
+            userData.push(doc.data());
+        })
+
+        return userData;
     } catch (error) {
         logger.error("Error fetching user data:", error);
         throw new functions.https.HttpsError('internal', 'Unable to fetch user data', error);
     }
 });
 
-exports.helloWorld = onRequest((request, response) => {
+exports.helloWorld = onRequest(
+    {cors: true},
+    (request, response) => {
   logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
