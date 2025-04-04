@@ -93,11 +93,11 @@ function Nav({selected, setPage, min_page_height}) {
                 ))}
             </ul>
         </div>
-        {/* <div id="gamesNav">
+        <div id="gamesNav">
             <a href="/tcg">
                 Play the hit new Trading Card Game!
             </a>
-        </div> */}
+        </div>
     </>
     )
     }

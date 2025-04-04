@@ -128,7 +128,6 @@ const updateUserCards = async (uid, old_cards, new_cards) => { // WRITES TO DB
 }
 
 exports.getUserData = onCall(
-    {cors: ["*", "localhost:5173"]},
     async (request) => {
     const context = request.data.context;
     if (!context.uid) {
@@ -155,7 +154,6 @@ exports.getUserData = onCall(
 });
 
 exports.openPack = onCall(
-    {cors: true},
     async (request) => {
         const uid = request.data.uid;
         const user_data = (await db.collection('users').doc(uid).get()).data();
@@ -184,7 +182,6 @@ exports.openPack = onCall(
 
 //
 exports.infuse = onCall(
-    {cors: true},
     async (request) => {
         /*
         card: {
@@ -227,8 +224,21 @@ exports.infuse = onCall(
 )
 
 exports.helloWorld = onRequest(
-    {cors: true},
+    {cors: false},
     (request, response) => {
   logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
+
+exports.helloWorldOnCall = onCall(
+    async (request) => {
+        return "hellooooo";
+    }
+)
+
+exports.helloWorldOnCallPublic = onCall(
+    {cors: true},
+    async (request) => {
+        return "hellooooo public public public";
+    }
+)

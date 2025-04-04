@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFunctions } from 'firebase/functions';
 import { getFirestore } from 'firebase/firestore';
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 // import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
@@ -19,5 +20,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const functions = getFunctions(app);
 const auth = getAuth(app);
+// self.FIREBASE_APPCHECK_DEBUG_TOKEN = "b1f6dfae-d3e9-4af4-bcc3-1de08ea8e2a3";
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('6Lf3eQorAAAAAOjnRxbQKSbYnsP_Y102phRkmRle'),
+  isTokenAutoRefreshEnabled: true
+})
 
 export { auth };

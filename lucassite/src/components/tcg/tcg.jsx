@@ -8,7 +8,6 @@ import Infuse from "./Infuse.jsx";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
 
-
 import './tcg.css';
 
 function Tcg() {
