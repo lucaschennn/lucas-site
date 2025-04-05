@@ -21,9 +21,11 @@ const db = getFirestore(app);
 const functions = getFunctions(app);
 const auth = getAuth(app);
 // self.FIREBASE_APPCHECK_DEBUG_TOKEN = "b1f6dfae-d3e9-4af4-bcc3-1de08ea8e2a3";
-initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider('6Lf3eQorAAAAAOjnRxbQKSbYnsP_Y102phRkmRle'),
-  isTokenAutoRefreshEnabled: true
-})
+// initializeAppCheck(app, {
+//   provider: new ReCaptchaV3Provider('6Lf3eQorAAAAAOjnRxbQKSbYnsP_Y102phRkmRle'),
+//   isTokenAutoRefreshEnabled: true
+// })
+
+//https://firebase.google.com/docs/app-check/cloud-functions?hl=en&authuser=1#node.js-2nd-gen_1
 
 export { auth };

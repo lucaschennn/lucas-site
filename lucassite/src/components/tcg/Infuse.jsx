@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Card from "./Card.jsx";
+import BaseCard from "./BaseCard.jsx";
 
 const Infuse = ({ isOpen, onClose, userData, setUserData, sortedCards, infuse }) => {
     if (!isOpen) return null; // Prevents rendering when closed
@@ -35,12 +35,12 @@ const Infuse = ({ isOpen, onClose, userData, setUserData, sortedCards, infuse })
                         <div className="selected-card">
                         {
                             originalIdx >= 0 &&
-                            <Card card={userData.data.cards[originalIdx]}/>
+                            <BaseCard card={userData.data.cards[originalIdx]}/>
                         }
                         </div>
                         <ul>
                             {userData.data.cards.map((item, index) => (
-                                <Card key={index} card={item} onClick={() => setOriginalIdx(Number(index))}/>
+                                <BaseCard key={index} card={item} onClick={() => setOriginalIdx(Number(index))}/>
                             ))}
                         </ul>
                     </div>
@@ -50,12 +50,12 @@ const Infuse = ({ isOpen, onClose, userData, setUserData, sortedCards, infuse })
                             <div className="selected-card">
                                 {
                                 sacrificeIdx >= 0 && 
-                                <Card card={userData.data.cards[sacrificeIdx]}/>
+                                <BaseCard card={userData.data.cards[sacrificeIdx]}/>
                                 }
                             </div>
                         <ul>
                             {userData.data.cards.map((item, index) => (
-                                <Card key={index} card={item} onClick={() => setSacrificeIdx(index)}/>
+                                <BaseCard key={index} card={item} onClick={() => setSacrificeIdx(index)}/>
                             ))}
                         </ul>
                     </div>

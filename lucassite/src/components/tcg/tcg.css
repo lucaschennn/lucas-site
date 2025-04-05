@@ -46,6 +46,15 @@
     max-width: 100px;
 }
 
+#cardStack {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+}
+
+
 .card-selector {
     display: flex;
     flex-direction: row;
@@ -55,8 +64,38 @@
     overflow-y: auto;
 }
 
+.card {
+    top: 0;
+    left: 0;
+    background-color: white;
+    border: 1px solid gray;
+    width: fit-content;
+    touch-action: none;
+    border-radius: 10px;
+    user-select: none;
+    width: 200px;
+    height: 300px;
+    padding: 10px;
+}
+
+.card-headings h4{
+    margin: 0;
+}
+.card-headings h5 {
+    margin: 0;
+    margin-bottom: 16px;
+}
+
 .selected-card {
     border: 1px solid gray;
     padding: 0 50px;
     height: 200px;
+}
+
+.card-attribute {
+    list-style: none;
+}
+
+.card-description {
+    font-size: 10px;
 }

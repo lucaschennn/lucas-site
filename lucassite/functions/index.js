@@ -159,7 +159,7 @@ exports.openPack = onCall(
         const user_data = (await db.collection('users').doc(uid).get()).data();
         const prev_owned_cards = user_data.cards || [];
 
-        if (prev_owned_cards > 100) {
+        if (prev_owned_cards.length > 100) {
             throw new functions.https.HttpsError('internal-error', 'Too many cards! This restriction will be lifted in the future')
         }
         
@@ -175,8 +175,11 @@ exports.openPack = onCall(
             new_cards.push(drawCard(master_cards_map));
         }
         
-        const res = await updateUserCards(uid, prev_owned_cards, new_cards);
-        return res.data();
+        const new_user_data = await updateUserCards(uid, prev_owned_cards, new_cards);
+        const res = {};
+        res.data = new_user_data.data();
+        res.new_cards = new_cards;
+        return res;
     }
 )
 
