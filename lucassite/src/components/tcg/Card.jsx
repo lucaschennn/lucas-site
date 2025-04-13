@@ -69,7 +69,7 @@ const Card = ({card, onClick, index, topCard, setTopCard, numCards}) => {
     
     return (
         <>
-            <animated.div onClick={onClick} {...bind()} style={{
+            <animated.div className="Card" onClick={onClick} {...bind()} style={{
                 x,
                 y,
                 zIndex: getOrdering(),

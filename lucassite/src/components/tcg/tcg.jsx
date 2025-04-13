@@ -4,13 +4,11 @@ import Login from "./Login.jsx";
 import Logout from "./Logout.jsx";
 import Countdown from "./Countdown.jsx";
 import Card from "./Card.jsx";
+import BaseCard from "./BaseCard.jsx";
 import Infuse from "./Infuse.jsx";
 import OpenPack from "./OpenPack.jsx";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
-
-import { useSpring, animated } from '@react-spring/web';
-import { useGesture, useDrag } from '@use-gesture/react';
 
 import './tcg.css';
 
@@ -20,6 +18,7 @@ function Tcg() {
     const [userData, setUserData] = useState("");
     const [InfuseOpen, setInfuseOpen] = useState(false);
     const [OpenPackOpen, setOpenPackOpen] = useState(false);
+    const [cardView, setCardView] = useState(0);
 
     const [topCard, setTopCard] = useState(0);
 
@@ -49,6 +48,9 @@ function Tcg() {
 
     const handlePackOpen = () => {
         setOpenPackOpen(true);
+    }
+    const handleCardView = () => {
+        setCardView((prev) => (prev + 1) % 2)
     }
 
     useEffect(() => {
@@ -90,22 +92,51 @@ function Tcg() {
         {
             userAuth ? <Logout/> : <Login/>
         }
-        {userData && (
+        {userData &&
             <div className="main-content">
-                <Countdown refreshes_at={userData.data.pack_refreshes}/>
-                <button onClick={handlePackOpen}>open pack</button>
-                <button onClick={() => setInfuseOpen(true)}>infuse</button>
-                { !InfuseOpen && !OpenPackOpen &&
+                
+                <button id="openPackBtn" onClick={handlePackOpen}>
+                    <p id="openPackText">Open Pack</p>
+                    <Countdown refreshes_at={userData.data.pack_refreshes}/>
+                </button>
+                <div id="homeButtons">
+                    <div id="actionButtons">
+                        <button onClick={() => setInfuseOpen(true)}>Infuse</button>
+                        <button>Trade up</button>
+                    </div>
+                    <button id="collectionBtn">Collection</button>
+                </div>
+                {
+                    cardView === 0 ?
                     <ul id="cardStack">
                         {sortedCards("collection", 0, topCard).map((item, index) => (
                             <Card key={index} index={index} card={item} topCard={topCard} setTopCard={setTopCard} numCards={userData.data.cards.length}/>
                         ))}
                     </ul>
+                    :
+                    <div id="cardGridContainer">
+                        <div id="cardGrid">
+                            {sortedCards("collection", 0, topCard).map((item, index) => (
+                                <BaseCard key={index}  card={item} scale={.5}/>
+                            ))}
+                        </div>
+                    </div>
+
                 }
+                <div className="view-buttons">
+                    <label>
+                        <input type="radio" name="fruit" value="stack" checked={cardView === 0} onChange={handleCardView}/>
+                        Stack
+                    </label>
+                    <label>
+                        <input type="radio" name="fruit" value="grid" checked={cardView === 1} onChange={handleCardView}/>
+                        Grid
+                    </label>
+                </div>
                 <Infuse isOpen={InfuseOpen} userData={userData} setUserData={setUserData} sortedCards={sortedCards} infuse={infuse} onClose={() => setInfuseOpen(false)}/>
                 <OpenPack isOpen={OpenPackOpen} setUserData={setUserData} uid={userAuth.uid} openPack={openPack} onClose={() => setOpenPackOpen(false)}/>
             </div>
-        )}
+        }
     </div>
     );
 }

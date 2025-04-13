@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 
 
-const BaseCard = ({card, onClick}) => {
+const BaseCard = ({card, onClick, scale=1}) => {
     //card.attributes
     //card.name
     //card.description
@@ -17,18 +17,30 @@ const BaseCard = ({card, onClick}) => {
 
     return (
         <>
-            <div className="card" onClick={onClick}>
-                
-                <div className="card-headings">
-                    <h4>{card.name} {quality}</h4>
-                    <h5>{card.collection}</h5>
+            <div className="card" onClick={onClick} style={{
+                    "width": `${200 * scale}px`,
+                    "height": `${300 * scale}px`,
+                    "padding": `${10 * scale}px`,
+            }}>
+                <div>
+                    <div className="card-headings" style={{
+                    "transform": `scale(${scale})`,
+                    "transform-origin": "top left",
+                    }}>
+                        <h4>{card.name} {quality}</h4>
+                        <h5>{card.collection}</h5>
+                    </div>
+                    {
+                        Object.keys(card.attributes).map((key, index) => (
+                            <li className="card-attribute" key={index} style={{
+                                "font-size": `${16 * scale}px`,
+                                }}>{key} {card.attributes[key]}</li>
+                        ))
+                    }
+                    <p className="card-description" style={{
+                    "font-size": `${10 * scale}px`,
+                    }}>{card.description}</p>
                 </div>
-                {
-                    Object.keys(card.attributes).map((key, index) => (
-                        <li className="card-attribute" key={index}>{key} {card.attributes[key]}</li>
-                    ))
-                }
-                <p className="card-description">{card.description}</p>
             </div>
         </>
     )

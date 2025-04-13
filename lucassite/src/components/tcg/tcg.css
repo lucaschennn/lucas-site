@@ -3,11 +3,48 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    width: 40%;
 }
 
-#closeButton {
+#signInForm input {
+    all: unset;
+    border: 2px solid rgba(0,0,0, .2);
+    background-color: rgba(255,255,255,.4);
+    color: rgba(255,255,255, .8);
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#signInForm input::placeholder {
+    color: rgba(255,255,255, .4);
+}
+
+#formHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-button {
     all: unset;
     cursor: pointer;
+    color: rgba(255,255,255, .8);
+}
+
+.form-submit-btn {
+    all: unset;
+    cursor: pointer;
+    text-align: center;
+    font-size: large;
+    font-weight: 600;
+    color: rgba(255,255,255, .9);
+}
+
+.error-text {
+    color: rgba(255, 0, 0, .8);
+    margin-bottom: 0;
 }
 
 #infuseModal {
@@ -47,11 +84,12 @@
 }
 
 #cardStack {
-    position: relative;
-    width: 400px;
-    height: 400px;
-    left: 50%;
-    top: 50%;
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+    height: 300px;
 }
 
 
@@ -65,17 +103,14 @@
 }
 
 .card {
-    top: 0;
-    left: 0;
     background-color: white;
     border: 1px solid gray;
     width: fit-content;
+    width: 200px;
+    height: 300px;
     touch-action: none;
     border-radius: 10px;
     user-select: none;
-    width: 200px;
-    height: 300px;
-    padding: 10px;
 }
 
 .card-headings h4{
@@ -93,9 +128,132 @@
 }
 
 .card-attribute {
+    font-size: 16px;
     list-style: none;
 }
 
 .card-description {
     font-size: 10px;
+}
+
+.login-container {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#playBtn {
+    all: unset;
+    font-size: 96px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+#playBtn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .2); /* adjust for your opacity effect */
+    transition: left 0.4s ease;
+}
+
+#playBtn:hover::before {
+    left: 0;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#openPackBtn {
+    width: 200px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, .4);
+    background-color: #53A264;
+    border-radius: 9999px;
+}
+#openPackText {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+#openPackCountdown {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #C48B21;
+    font-size: 20px;
+}
+
+#homeButtons {
+    display: flex;
+}
+#homeButtons button {
+    font: inherit;
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px 12px 5px 12px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, .4);
+    border-radius: 10px;
+}
+
+#actionButtons {
+    display: flex;
+    flex-direction: column;
+}
+#actionButtons button {
+    background-color: #53A264;
+}
+
+#collectionBtn {
+    background-color: rgba(255,255,255, .7);
+}
+
+.view-buttons label {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 9999px;
+    background-color: #629A6E;
+    border: 2px solid rgba(255,255,255,.2);
+}
+
+.view-buttons label:has(input:checked) {
+    opacity: .8;
+}
+
+.view-buttons input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+#cardGridContainer {
+    height: 350px;
+    overflow-y: scroll;
+    margin-bottom: 50px;
+}
+
+#cardGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#cardGrid .card {
+
 }
