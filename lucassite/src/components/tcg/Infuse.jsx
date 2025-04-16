@@ -6,6 +6,81 @@ const Infuse = ({ isOpen, onClose, userData, setUserData, sortedCards, infuse })
 
     const [originalIdx, setOriginalIdx] = useState(-1);
     const [sacrificeIdx, setSacrificeIdx] = useState(-1);
+    const [cardsList, setCardsList] = useState(sortedCards());
+    const [previewCard, setPreviewCard] = useState({});
+    const [filter, setFilter] = useState(() => (item) => true);
+    const [infused, setInfused] = useState(false);
+
+    const handleCardSelect = (index) => {
+        if(sacrificeIdx !== -1 && originalIdx !== -1) {
+            return;
+        }
+
+        setPreviewCard({})
+        let indices = [-1,-1];
+        if (originalIdx === -1) {
+            setOriginalIdx(index);
+            setFilter(() => (item, idx) => {
+                return item.name === cardsList[index].name && idx !== index;
+            })
+            if(sacrificeIdx !== -1) {
+                indices = [index, sacrificeIdx];
+            }
+        } else {
+            setSacrificeIdx(index);
+            setFilter((prev) => (item, idx) => {
+                return prev(item, idx) && idx !== index;
+            })
+            if(originalIdx !== -1) {
+                indices = [originalIdx, index];
+            }
+        }
+        if(indices[0] !== -1 && indices[1] !== -1) {
+            const og = cardsList[indices[0]];
+            const preview = JSON.parse(JSON.stringify(og)); // deep copy
+            const sac = cardsList[indices[1]];
+            console.log(og, sac);
+            if(!og || !sac) {
+                return;
+            }
+            console.log("test2");
+
+            if(og.name !== sac.name) {
+                return;
+            }
+            console.log("test3");
+
+            for(let key of Object.keys(og.attributes)) {
+                console.log(key)
+                preview.attributes[key] = Math.max(og.attributes[key], sac.attributes[key])
+            }
+            console.log(preview);
+            setPreviewCard(preview);
+        }
+    }
+
+    const handleCardRemove = (mode, index) => {
+        setPreviewCard({});
+        if(mode === 0) {
+            setOriginalIdx(-1);
+            if(sacrificeIdx === -1) {
+                setFilter(() => (item, idx) => true);
+            } else {
+                setFilter((prev) => (item, idx) => {
+                    return prev(item, idx) || idx == index;
+                })
+            }
+        } else if(mode === 1) {
+            setSacrificeIdx(-1);
+            if(originalIdx === -1) {
+                setFilter(() => (item, idx) => true);
+            } else {
+                setFilter((prev) => (item, idx) => {
+                    return prev(item, idx) || idx == index;
+                })
+            }
+        }
+    }
 
     const handleInfuse = () => {
         infuse({uid: userData.data.uid, original_idx: originalIdx, sacrifice_idx: sacrificeIdx})
@@ -14,6 +89,7 @@ const Infuse = ({ isOpen, onClose, userData, setUserData, sortedCards, infuse })
             console.log(user_data.data)
             setOriginalIdx(-1);
             setSacrificeIdx(-1);
+            setInfused(true);
         })
     }
 
@@ -23,43 +99,57 @@ const Infuse = ({ isOpen, onClose, userData, setUserData, sortedCards, infuse })
 
 
     return (
+
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
                     <button className="close-button" onClick={onClose}>Close</button>
-                    <button id="infuseBtn" onClick={() => handleInfuse()}>Infuse</button>
                 </div>
-                <div className="card-selector">
-                    <div id="originalSelector">
-                        Selected original card:
-                        <div className="selected-card">
-                        {
-                            originalIdx >= 0 &&
-                            <BaseCard card={userData.data.cards[originalIdx]}/>
+                {
+                infused?
+                <div id="infuseSuccess">
+                    <div className="card">
+                        { (previewCard && Object.keys(previewCard).length > 0) &&
+                            <BaseCard card={previewCard}/>
                         }
-                        </div>
-                        <ul>
-                            {userData.data.cards.map((item, index) => (
-                                <BaseCard key={index} card={item} onClick={() => setOriginalIdx(Number(index))}/>
-                            ))}
-                        </ul>
-                    </div>
-                    <div id="sacrificeSelector">
-                        Selected sacrifice card:
-
-                            <div className="selected-card">
-                                {
-                                sacrificeIdx >= 0 && 
-                                <BaseCard card={userData.data.cards[sacrificeIdx]}/>
-                                }
-                            </div>
-                        <ul>
-                            {userData.data.cards.map((item, index) => (
-                                <BaseCard key={index} card={item} onClick={() => setSacrificeIdx(index)}/>
-                            ))}
-                        </ul>
                     </div>
                 </div>
+                :
+                <div id="infuseContent">
+                    <div className="card-selector">
+                        {
+                            <div className="card-grid-container">
+                                <div className="card-grid infuse">
+                                    {sortedCards("collection", 0).map((item, index) => ( filter(item, index) &&
+                                        <BaseCard key={index}  card={item} scale={.5} onClick={() => handleCardSelect(index)}/>
+                                    ))}
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="infuseCards">
+                        <div className="card small" onClick={() => handleCardRemove(0, originalIdx)}>
+                            { originalIdx !== -1 &&
+                                <BaseCard card={cardsList[originalIdx]} scale={.5}/>
+                            }
+                        </div>
+                        <div className="card small" onClick={() => handleCardRemove(1, sacrificeIdx)}>
+                            { sacrificeIdx !== -1 &&
+                                <BaseCard card={cardsList[sacrificeIdx]} scale={.5}/>
+                            }
+                        </div>
+                    </div>
+                    <div id="infusePreview">
+                        <div className="card smaller">
+                            { (previewCard && Object.keys(previewCard).length > 0) &&
+                                <BaseCard card={previewCard} scale={.75}/>
+                            }
+                        </div>
+                        <button id="infuseBtn" onClick={() => handleInfuse()}>Infuse</button>
+                    </div>
+                </div>
+                }
+
             </div>
         </div>
     );

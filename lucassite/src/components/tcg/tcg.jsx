@@ -117,8 +117,8 @@ function Tcg() {
                         ))}
                     </ul>
                     :
-                    <div id="cardGridContainer">
-                        <div id="cardGrid">
+                    <div className="card-grid-container">
+                        <div className="card-grid">
                             {sortedCards("collection", 0, topCard).map((item, index) => (
                                 <BaseCard key={index}  card={item} scale={.7}/>
                             ))}
