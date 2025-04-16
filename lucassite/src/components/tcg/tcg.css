@@ -223,6 +223,17 @@
     background-color: rgba(255,255,255, .7);
 }
 
+#filterBtn {
+    margin-top: 20px;
+    font: inherit;
+    cursor: pointer;
+    padding: 5px 12px 5px 12px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, .4);
+    border-radius: 10px;
+    background-color: rgba(255,255,255, .7);
+}
+
 .view-buttons label {
     margin: 10px;
     padding: 10px;
@@ -243,17 +254,19 @@
 }
 
 #cardGridContainer {
-    height: 350px;
+    height: 550px;
     overflow-y: scroll;
     margin-bottom: 50px;
-}
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;}
 
 #cardGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-}
-
-#cardGrid .card {
-
+    gap: 5px;
+    justify-content: center;
 }

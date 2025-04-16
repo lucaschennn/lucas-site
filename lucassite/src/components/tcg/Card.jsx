@@ -15,7 +15,11 @@ const Card = ({card, onClick, index, topCard, setTopCard, numCards}) => {
     //card.rarity
     const rotateCard = () => {
         setTopCard((prev) => {
+            console.log("nextIdx before", prev);
             const nextIdx = (prev + 1) % numCards;
+            // const nextIdx = prev;
+            console.log("nextIdx", nextIdx);
+            console.log("top card", topCard);
             return nextIdx;
         })
     }
@@ -31,7 +35,6 @@ const Card = ({card, onClick, index, topCard, setTopCard, numCards}) => {
           x: 0,
           y: 0,
           config: { tension: 120, friction: 10 },
-          touchAction: 'none',
         })
       )
     // const target = useRef(null)
@@ -39,7 +42,7 @@ const Card = ({card, onClick, index, topCard, setTopCard, numCards}) => {
         {
             onDrag: ({ active, down, movement: [mx], offset: [x], direction, velocity }) => {
                 if(!down && velocity[0] > .2) {
-                    api({ x: (window.innerWidth - 400) * direction[0], rotateX: 0, rotateY: 0, scale: active ? .9 : 1 });
+                    api({ x: (window.innerWidth - 600) * direction[0], rotateX: 0, rotateY: 0, scale: active ? .9 : 1 });
                     rotateCard();
                     return;
                 }
@@ -76,6 +79,7 @@ const Card = ({card, onClick, index, topCard, setTopCard, numCards}) => {
                 transform: `translate(${calcOffset(20)}px, ${calcOffset(5)}px)`,
                 pointerEvents: index === topCard ? 'auto' : 'none',
                 position: 'absolute',
+                touchAction: 'none',
             }}>
                 <BaseCard card={card}/>
             </animated.div>

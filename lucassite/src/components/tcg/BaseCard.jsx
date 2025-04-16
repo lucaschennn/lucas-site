@@ -25,7 +25,7 @@ const BaseCard = ({card, onClick, scale=1}) => {
                 <div>
                     <div className="card-headings" style={{
                     "transform": `scale(${scale})`,
-                    "transform-origin": "top left",
+                    "transformOrigin": "top left",
                     }}>
                         <h4>{card.name} {quality}</h4>
                         <h5>{card.collection}</h5>
@@ -33,12 +33,12 @@ const BaseCard = ({card, onClick, scale=1}) => {
                     {
                         Object.keys(card.attributes).map((key, index) => (
                             <li className="card-attribute" key={index} style={{
-                                "font-size": `${16 * scale}px`,
+                                "fontSize": `${16 * scale}px`,
                                 }}>{key} {card.attributes[key]}</li>
                         ))
                     }
                     <p className="card-description" style={{
-                    "font-size": `${10 * scale}px`,
+                    "fontSize": `${10 * scale}px`,
                     }}>{card.description}</p>
                 </div>
             </div>

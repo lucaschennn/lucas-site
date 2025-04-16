@@ -88,7 +88,7 @@ function Tcg() {
     //   }, [topCard]);
 
     return (
-    <div>
+    <div id="Tcg">
         {
             userAuth ? <Logout/> : <Login/>
         }
@@ -106,10 +106,13 @@ function Tcg() {
                     </div>
                     <button id="collectionBtn">Collection</button>
                 </div>
+                <button id="filterBtn">
+                    Filter and sort
+                </button>
                 {
                     cardView === 0 ?
                     <ul id="cardStack">
-                        {sortedCards("collection", 0, topCard).map((item, index) => (
+                        {sortedCards("collection", 0).map((item, index) => (
                             <Card key={index} index={index} card={item} topCard={topCard} setTopCard={setTopCard} numCards={userData.data.cards.length}/>
                         ))}
                     </ul>
@@ -117,7 +120,7 @@ function Tcg() {
                     <div id="cardGridContainer">
                         <div id="cardGrid">
                             {sortedCards("collection", 0, topCard).map((item, index) => (
-                                <BaseCard key={index}  card={item} scale={.5}/>
+                                <BaseCard key={index}  card={item} scale={.7}/>
                             ))}
                         </div>
                     </div>
