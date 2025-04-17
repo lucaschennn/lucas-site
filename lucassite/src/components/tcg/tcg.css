@@ -74,6 +74,9 @@
     width: 90%;
     background: #686868;
 }
+.modal-content.open-pack {
+    height: 500px;
+}
 
 .close-button {
     max-width: 100px;
@@ -81,6 +84,7 @@
 
 #infuseBtn {
     font: inherit;
+    cursor: pointer;
     width: 200px;
     margin: 50px 0 0 10px;
     border: 2px solid rgba(255, 255, 255, .4);
@@ -126,7 +130,8 @@
 }
 
 #infuseSuccess {
-    
+    display: flex;
+    justify-content: center;
 }
 
 .card {
@@ -308,4 +313,45 @@
     gap: 5px;
     justify-content: center;
     padding-left: 50px;
+}
+
+#openPackView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#openPackBtn {
+    font: inherit;
+    color: white;
+    font-size: 42px;
+    display: flex;
+    padding: 40px 0 40px 0;
+    justify-content: center;
+}
+
+#newCardStack {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.new-card-wrapper {
+    display: flex;
+    align-items: center;
+    height: 225px;
+    width: 150px;
+    justify-content: center;
+}
+
+.new-card {
+    position: absolute;
+    cursor: pointer;
+    height: 225px;
+    width: 150px;
+    will-change: transform, opacity;
 }
