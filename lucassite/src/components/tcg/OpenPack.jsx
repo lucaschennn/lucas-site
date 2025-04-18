@@ -8,6 +8,12 @@ const OpenPack = ({ isOpen, onClose, setUserData, uid, openPack }) => {
     const [newCards, setNewCards] = useState(false);
     const [topCard, setTopCard] = useState(0);
     const [viewState, setViewState] = useState(0);
+
+    const calculatePosition = (index, length) => {
+        const width = 800;
+
+        return width / (length - 1) * index - (width / 2);
+    }
     
 
     const handlePackOpen = () => {
@@ -96,7 +102,7 @@ const OpenPack = ({ isOpen, onClose, setUserData, uid, openPack }) => {
                     {viewState === 1 &&
                     <div id="newCardStack">
                         {newCards.map((item, index) => (
-                            <NewCard key={index} index={index} card={item}/>
+                            <NewCard key={index} index={index} card={item} position={calculatePosition(index, newCards.length)}/>
                         ))}
                     </div>
                     }

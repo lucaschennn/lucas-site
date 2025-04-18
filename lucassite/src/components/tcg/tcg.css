@@ -341,7 +341,9 @@
 }
 
 .new-card-wrapper {
+    pointer-events: none;
     display: flex;
+    position: absolute;
     align-items: center;
     height: 225px;
     width: 150px;
@@ -349,9 +351,11 @@
 }
 
 .new-card {
+    pointer-events: auto;
     position: absolute;
     cursor: pointer;
     height: 225px;
     width: 150px;
+    backface-visibility: hidden;
     will-change: transform, opacity;
 }
