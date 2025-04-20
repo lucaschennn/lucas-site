@@ -15,11 +15,8 @@ const Card = ({card, onClick, index, topCard, setTopCard, numCards}) => {
     //card.rarity
     const rotateCard = () => {
         setTopCard((prev) => {
-            console.log("nextIdx before", prev);
             const nextIdx = (prev + 1) % numCards;
             // const nextIdx = prev;
-            console.log("nextIdx", nextIdx);
-            console.log("top card", topCard);
             return nextIdx;
         })
     }

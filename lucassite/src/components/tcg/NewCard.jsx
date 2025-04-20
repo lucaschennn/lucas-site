@@ -5,7 +5,7 @@ import { useSpring, animated } from '@react-spring/web';
 
 import BaseCard from './BaseCard.jsx';
 
-const NewCard = ({card, onClick, position}) => {
+const NewCard = ({index, card, onClick, position, setHasFlipped}) => {
 
     const [flipped, setFlipped] = useState(false);
     const springs = useSpring({
@@ -19,13 +19,22 @@ const NewCard = ({card, onClick, position}) => {
         config: { mass: 1, tension: 500, friction: 80 },
       })
 
+    const handleFlip = () => {
+        setFlipped(flipped => !flipped)
+        setHasFlipped((prev) => {
+            const res = [...prev];
+            res[index] = true;
+            return res;
+        })
+    }
+
     return (
         <div className="new-card-wrapper">
-            <animated.div className="card new-card" style={{ ...springs}} onClick={() => setFlipped(flipped => !flipped)}>
+            <animated.div className="card new-card" style={{ ...springs}} onClick={handleFlip}>
                 
             </animated.div>
             <animated.div className="card new-card"
-            style={{...springs, rotateY: '180deg',}} onClick={() => setFlipped(flipped => !flipped)}>
+            style={{...springs, rotateY: '180deg',}} onClick={handleFlip}>
                 <BaseCard card={card} onClick={onClick} scale={.75}/>
             </animated.div>
         </div>

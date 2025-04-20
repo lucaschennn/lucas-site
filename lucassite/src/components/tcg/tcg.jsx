@@ -39,10 +39,13 @@ function Tcg() {
         if(!cards) {
             return [];
         }
+
         cards.sort();
+
         if(start_from === 0) {
             return cards;
         }
+
         return [...cards.slice(start_from), ...cards.slice(0, start_from)]
     }
 
@@ -56,15 +59,11 @@ function Tcg() {
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, (userAuth) => {
             if (userAuth) {
-                console.log("detected userAuth")
                 setUserAuth(userAuth);
                 const user_context = userAuth.toJSON();
-                console.log("calling getUserData")
                 getUserData({context: user_context})
                 .then((user_data) => {
                     setUserData(user_data);
-                    console.log("done calling getUserData")
-                    console.log(user_data.data)
                 })
 
             } else {
@@ -96,7 +95,6 @@ function Tcg() {
             <div className="main-content">
                 
                 <button id="openPackBtn" onClick={handlePackOpen}>
-                    <p id="openPackText">Open Pack</p>
                     <Countdown refreshes_at={userData.data.pack_refreshes}/>
                 </button>
                 <div id="homeButtons">

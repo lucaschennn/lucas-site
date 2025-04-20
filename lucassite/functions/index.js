@@ -120,7 +120,7 @@ const updateUserCards = async (uid, old_cards, new_cards) => { // WRITES TO DB
     } else {
         await ref.doc(uid).update({
             cards: [...old_cards, ...new_cards],
-            pack_refreshes: Date.now() + 7000,
+            pack_refreshes: Date.now() + 3600000,
         })
     }
 

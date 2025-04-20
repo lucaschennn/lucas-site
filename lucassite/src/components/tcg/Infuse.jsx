@@ -39,22 +39,17 @@ const Infuse = ({ isOpen, onClose, userData, setUserData, sortedCards, infuse })
             const og = cardsList[indices[0]];
             const preview = JSON.parse(JSON.stringify(og)); // deep copy
             const sac = cardsList[indices[1]];
-            console.log(og, sac);
             if(!og || !sac) {
                 return;
             }
-            console.log("test2");
 
             if(og.name !== sac.name) {
                 return;
             }
-            console.log("test3");
 
             for(let key of Object.keys(og.attributes)) {
-                console.log(key)
                 preview.attributes[key] = Math.max(og.attributes[key], sac.attributes[key])
             }
-            console.log(preview);
             setPreviewCard(preview);
         }
     }
@@ -86,17 +81,11 @@ const Infuse = ({ isOpen, onClose, userData, setUserData, sortedCards, infuse })
         infuse({uid: userData.data.uid, original_idx: originalIdx, sacrifice_idx: sacrificeIdx})
         .then((user_data) => {
             setUserData(user_data);
-            console.log(user_data.data)
             setOriginalIdx(-1);
             setSacrificeIdx(-1);
             setInfused(true);
         })
     }
-
-    useEffect(() => {
-        console.log("rerender!", userData)
-    })
-
 
     return (
 

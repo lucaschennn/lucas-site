@@ -13,7 +13,6 @@ function Projects({top, page}) {
 
   const replay = () => {
     setGifUpdate((prev) => prev + 1);
-    console.log("yar har har")
   }
 
   useEffect(() => {

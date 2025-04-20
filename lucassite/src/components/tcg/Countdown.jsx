@@ -26,7 +26,22 @@ const Countdown = ({refreshes_at}) => {
         return `${hours}h ${minutes}m ${seconds}s`;
     }
 
-    return <p id="openPackCountdown">{milliseconds > 0 ? `${formatTime()}` : ""}</p>;
+    return (
+        <>
+            {
+                milliseconds > 0 ?
+                <>
+                    <p id="openPackText">Pack Refreshing</p>
+                    <p id="openPackCountdown">{formatTime()}</p>
+                </>
+                :
+                <>
+                    <p id="openPackText">Open Pack</p>
+                </>
+            }
+
+        </>
+    )
 };
 
 export default Countdown;
