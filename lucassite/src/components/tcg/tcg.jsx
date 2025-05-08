@@ -110,9 +110,19 @@ function Tcg() {
                 {
                     cardView === 0 ?
                     <ul id="cardStack">
-                        {sortedCards("collection", 0).map((item, index) => (
-                            <Card key={index} index={index} card={item} topCard={topCard} setTopCard={setTopCard} numCards={userData.data.cards.length}/>
-                        ))}
+                        {
+                            userData.data.cards.length > 0 ?
+                            <>
+                                {sortedCards("collection", 0).map((item, index) => (
+                                <Card key={index} index={index} card={item} topCard={topCard} setTopCard={setTopCard} numCards={userData.data.cards.length}/>
+                                ))}
+                            </>
+                            :
+                            <div className="empty-card">
+                                You have no cards. Open your first pack!
+                            </div>
+                        }
+
                     </ul>
                     :
                     <div className="card-grid-container">

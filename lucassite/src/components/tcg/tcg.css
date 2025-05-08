@@ -1,3 +1,18 @@
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #a8a8a8;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: gray;
+}
+
 #signInForm {
     position: absolute;
     display: flex;
@@ -383,4 +398,16 @@
     background-color: rgba(0,0,0,0);
     opacity: .5;
     pointer-events: none;
+}
+
+.empty-card {
+    text-align: center;
+    background-color: white;
+    border: 1px solid gray;
+    width: fit-content;
+    width: 200px;
+    height: 300px;
+    touch-action: none;
+    border-radius: 10px;
+    user-select: none;
 }

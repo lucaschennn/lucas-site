@@ -22,6 +22,7 @@ const functions = require('firebase-functions');
 // The Firebase Admin SDK to access Firestore.
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
+const { write } = require("firebase-functions/logger");
 
 admin.initializeApp();
 const db = getFirestore();
@@ -142,7 +143,8 @@ exports.getUserData = onCall(
         if (snapshot.exists) {
             userData = snapshot.data();
         } else {
-            userData = writeUserData(usersRef, context).data();
+            const res = await writeUserData(usersRef, context);
+            userData = res.data();
             userData["NEW_ACCOUNT"] = true;
         }
         userData["uid"] = context.uid;
