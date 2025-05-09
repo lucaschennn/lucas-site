@@ -7,6 +7,7 @@ import Card from "./Card.jsx";
 import BaseCard from "./BaseCard.jsx";
 import Infuse from "./Infuse.jsx";
 import OpenPack from "./OpenPack.jsx";
+import Collection from "./Collection.jsx";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
 
@@ -17,20 +18,22 @@ function Tcg() {
     const [userAuth, setUserAuth] = useState("");
     const [userData, setUserData] = useState("");
     const [InfuseOpen, setInfuseOpen] = useState(false);
+    const [CollectionOpen, setCollectionOpen] = useState(false);
     const [OpenPackOpen, setOpenPackOpen] = useState(false);
     const [cardView, setCardView] = useState(0);
 
     const [topCard, setTopCard] = useState(0);
 
     const functions = getFunctions();
-    // if(import.meta.env.DEV) {
-    //     connectFunctionsEmulator(functions, "127.0.0.1", 5001);
-    // }
+    if(import.meta.env.DEV) {
+        connectFunctionsEmulator(functions, "127.0.0.1", 5001);
+    }
 
     
     const getUserData = httpsCallable(functions, 'getUserData');
     const openPack = httpsCallable(functions, 'openPack');
     const infuse = httpsCallable(functions, 'infuse');
+    const getCardData = httpsCallable(functions, 'getCardData');
     const helloWorld = httpsCallable(functions, 'helloWorld');
 
     // sort by either (rarity, collection, name, quality, collection_date)
@@ -76,16 +79,6 @@ function Tcg() {
         return () => unsub();
     }, [])
 
-
-
-    // useEffect(() => {
-    //     const timeout = setTimeout(() => {
-    //         api.start({ x: 0, rotateX: 0, rotateY: 0, scale: 1, immediate: true });
-    //     }, 20); // delay in ms — adjust as needed to match your fly-out animation duration
-      
-    //     return () => clearTimeout(timeout); // cleanup in case topCard changes again quickly
-    //   }, [topCard]);
-
     return (
     <div id="Tcg">
         {
@@ -102,28 +95,30 @@ function Tcg() {
                         <button onClick={() => setInfuseOpen(true)}>Infuse</button>
                         <button>Trade up</button>
                     </div>
-                    <button id="collectionBtn">Collection</button>
+                    <button id="collectionBtn" onClick={() => setCollectionOpen(true)}>Collection</button>
                 </div>
                 <button id="filterBtn">
                     Filter and sort
                 </button>
                 {
                     cardView === 0 ?
-                    <ul id="cardStack">
-                        {
-                            userData.data.cards.length > 0 ?
-                            <>
-                                {sortedCards("collection", 0).map((item, index) => (
-                                <Card key={index} index={index} card={item} topCard={topCard} setTopCard={setTopCard} numCards={userData.data.cards.length}/>
-                                ))}
-                            </>
-                            :
-                            <div className="empty-card">
-                                You have no cards. Open your first pack!
-                            </div>
-                        }
-
-                    </ul>
+                    <div>
+                        <p className="card-counter">{Math.min(userData.data.cards.length, topCard+1)} / {userData.data.cards.length}</p>
+                        <ul id="cardStack">
+                            {
+                                userData.data.cards.length > 0 ?
+                                <>
+                                    {sortedCards("collection", 0).map((item, index) => (
+                                    <Card key={index} index={index} card={item} topCard={topCard} setTopCard={setTopCard} numCards={userData.data.cards.length}/>
+                                    ))}
+                                </>
+                                :
+                                <div className="empty-card">
+                                    You have no cards. Open your first pack!
+                                </div>
+                            }
+                        </ul>
+                    </div>
                     :
                     <div className="card-grid-container">
                         <div className="card-grid">
@@ -146,6 +141,7 @@ function Tcg() {
                 </div>
                 <Infuse isOpen={InfuseOpen} userData={userData} setUserData={setUserData} sortedCards={sortedCards} infuse={infuse} onClose={() => setInfuseOpen(false)}/>
                 <OpenPack isOpen={OpenPackOpen} setUserData={setUserData} uid={userAuth.uid} openPack={openPack} onClose={() => setOpenPackOpen(false)}/>
+                <Collection isOpen={CollectionOpen} userData={userData} uid={userAuth.uid} getCardData={getCardData} onClose={() => setCollectionOpen(false)}/>
             </div>
         }
     </div>

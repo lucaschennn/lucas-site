@@ -77,15 +77,19 @@ const randStats = (maxi) => {
 }
 
 // retrieve all available cards, ordered by rarity
-const getAllCardsByRarity = async () => { // READS DB
-    const master_cards_map = new Map();
+const getAllCards = async () => {
     const card_list_snapshot = await db.collection('cards').orderBy("rarity").get();
-    
     if (!card_list_snapshot.size) {
         logger.error("Unable to get master cards list")
         throw new functions.https.HttpsError('internal', 'internal error')
     }
 
+    return await card_list_snapshot;
+}
+
+const getAllCardsByRarity = async () => { // READS DB
+    const master_cards_map = new Map();
+    const card_list_snapshot = await getAllCards();
     card_list_snapshot.forEach((card) => {
         const rarity = card.data().rarity;
 
@@ -225,6 +229,28 @@ exports.infuse = onCall(
         const res = (await ref.doc(uid).get()).data();
         res["uid"] = uid;
         return res;
+    }
+)
+
+exports.getCardData = onCall(
+    async (request) => {
+        const groups = ["collection", "rarity", "name"];
+        const group_by = (request.data && request.data.group_by in groups) || "collection";
+        if(!groups.includes(group_by)) {
+            throw new functions.https.HttpsError('bad-request', 'Provided sort key is invalid')
+        }
+
+        const master_cards_map = new Map();
+
+        const card_list_snapshot = await getAllCards();
+        card_list_snapshot.forEach((card) => {
+            const key = card.data()[group_by];
+            if(!master_cards_map.has(key)) {
+                master_cards_map.set(key, []);
+            }
+            master_cards_map.get(key).push(card.data());
+        })
+        return Object.fromEntries(master_cards_map);
     }
 )
 
