@@ -22,7 +22,7 @@ const Collection = ({isOpen, userData, getCardData, onClose}) => {
 
     const getUserCardCounts = (card_name) => {
         let count = 0;
-        for (card in userData.data.cards) {
+        for (const card of userData.data.cards) {
             if(card.name === card_name) count++;
         }
         return count;
@@ -34,17 +34,22 @@ const Collection = ({isOpen, userData, getCardData, onClose}) => {
                 {cards && 
                     Object.keys(cards).map((item, index) => (
                         <>
-                            <div key={index}>{Capluralize(item)}</div>
-                            {
-                                cards[item].map((card, card_index) => (
-                                    <>
-                                        <BaseCard card={card} scale={.65}/>
-                                        {getUserCardCounts(card.name)}
-                                    </>
-                                ))
-                            }
+                            <p className="collection-title">{Capluralize(item)}</p>
+                            <div className="collection-group">
+                                {
+                                    cards[item].map((card, card_index) => (
+                                        <div className="card-group">
+                                            <BaseCard card={card} scale={.5}/>
+                                            x{getUserCardCounts(card.name)}
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </>
                     ))
+                }
+                { /* TEMP */
+                <p className="collection-title">More Collections coming soon!</p>
                 }
             </div>
         </div>

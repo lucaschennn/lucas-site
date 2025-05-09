@@ -25,9 +25,9 @@ function Tcg() {
     const [topCard, setTopCard] = useState(0);
 
     const functions = getFunctions();
-    if(import.meta.env.DEV) {
-        connectFunctionsEmulator(functions, "127.0.0.1", 5001);
-    }
+    // if(import.meta.env.DEV) {
+    //     connectFunctionsEmulator(functions, "127.0.0.1", 5001);
+    // }
 
     
     const getUserData = httpsCallable(functions, 'getUserData');

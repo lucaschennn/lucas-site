@@ -421,3 +421,13 @@
     border-radius: 10px;
     user-select: none;
 }
+
+.collection-group {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: clip;
+}
+
+.collection-title {
+    font-size: 26px;
+}
