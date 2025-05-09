@@ -21,8 +21,9 @@ function Tcg() {
     const [CollectionOpen, setCollectionOpen] = useState(false);
     const [OpenPackOpen, setOpenPackOpen] = useState(false);
     const [cardView, setCardView] = useState(0);
-
     const [topCard, setTopCard] = useState(0);
+
+    const [popup, setPopup] = useState(true);
 
     const functions = getFunctions();
     // if(import.meta.env.DEV) {
@@ -144,6 +145,15 @@ function Tcg() {
                 <Collection isOpen={CollectionOpen} userData={userData} uid={userAuth.uid} getCardData={getCardData} onClose={() => setCollectionOpen(false)}/>
             </div>
         }
+        {
+            popup && (
+                <div id="slidingPopup">
+                    <button onClick={() =>setPopup(false)}>x</button>
+                    Hey there it's Lucas! While the game is quite bare-bones right now, feel free to mess around and stress test the game as much as you want. I'm continually integrating and refining new features, and I would love to hear any feedback!
+                </div>
+            )
+        }
+
     </div>
     );
 }

@@ -424,7 +424,6 @@
 @keyframes bannerScroll {
   from {
     transform: translateX(100%);
-    width: 0;
   }
   to {
     transform: translateX(0);
@@ -441,7 +440,6 @@
   cursor: pointer;
   z-index: 2;
   animation: bannerScroll 1s ease;
-  white-space: nowrap;
 } a {
   color: white;
   text-decoration: none;

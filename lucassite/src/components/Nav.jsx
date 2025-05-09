@@ -95,7 +95,7 @@ function Nav({selected, setPage, min_page_height}) {
         </div>
         <div id="gamesNav">
             <a href="/tcg">
-                Try my early-access, bare-bones Animal Emoticon Card Game!
+                Try my early-access Emoticon Trading Card Game!
             </a>
         </div>
     </>

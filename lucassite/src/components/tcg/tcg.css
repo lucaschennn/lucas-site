@@ -1,3 +1,25 @@
+#slidingPopup {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 9999;
+    animation: bannerScroll 1s ease;
+    color: white;
+    width: 400px;
+}
+#slidingPopup button {
+    all: unset;
+    text-align: right;
+    cursor: pointer;
+    width: 50px;
+    align-self: flex-end;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
